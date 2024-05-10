@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:background="@drawable/graient_color_background"
+tools:context=".IntroActivity">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="1083dp"
+                android:background="@drawable/graient_color_background">
+
+                <ImageView
+                    android:id="@+id/imageview"
+                    android:layout_width="307dp"
+                    android:layout_height="325dp"
+                    android:layout_margin="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.14"
+                    app:shapeAppearanceOverlay="@style/roundedImageRounded"
+                    app:srcCompat="@drawable/circle_gradient" />
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/shapeableImageView"
+                    android:layout_width="327dp"
+                    android:layout_height="302dp"
+                    android:layout_margin="18dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageview"
+                    app:layout_constraintEnd_toEndOf="@+id/imageview"
+                    app:layout_constraintStart_toStartOf="@+id/imageview"
+                    app:layout_constraintTop_toTopOf="@+id/imageview"
+                    app:shapeAppearanceOverlay="@style/roundedImageRounded"
+                    app:srcCompat="@drawable/woman"
+                    app:strokeWidth="1dp" />
+
+                <TextView
+                    android:id="@+id/TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:layout_marginTop="56dp"
+                    android:gravity="center"
+                    android:text="Vortex Rental Car"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageview"
+                    app:layout_constraintVertical_bias="0.215" />
+
+                <TextView
+                    android:id="@+id/TextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ramallah - Al Irsal Street"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22dp"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TextView"
+                    app:layout_constraintVertical_bias="0.346" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="32dp"
+                    android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
+                    android:text="Lets Start!"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.631"
+                    android:onClick="start"
+                    />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView"-->
+<!--                    android:layout_width="300dp"-->
+<!--                    android:layout_height="309dp"-->
+<!--                    android:layout_marginStart="4dp"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/shapeableImageView"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/imageview"-->
+<!--                    app:srcCompat="@drawable/woman" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
