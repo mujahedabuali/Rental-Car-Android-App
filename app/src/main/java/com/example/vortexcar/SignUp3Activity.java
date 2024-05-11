@@ -10,22 +10,22 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class loginActivity extends AppCompatActivity {
+public class SignUp3Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
-
-
     }
-    public void registerNow(View view) {
-        Intent intent = new Intent(this, SignUp1Activity.class);
+
+    public void signup2(View view) {
+        Intent intent = new Intent(this, SignUp2Activity.class);
         startActivity(intent);
     }
-    public void Intro(View view) {
-        Intent intent = new Intent(this, IntroActivity.class);
+    public void signup4(View view) {
+        Intent intent = new Intent(this, SignUp4Activity.class);
         startActivity(intent);
     }
+
+
 }
