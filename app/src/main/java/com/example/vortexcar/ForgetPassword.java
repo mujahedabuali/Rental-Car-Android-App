@@ -1,8 +1,6 @@
 package com.example.vortexcar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,20 +8,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class IntroActivity extends AppCompatActivity {
+public class ForgetPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_intro);
-
+        setContentView(R.layout.activity_forget_password);
     }
-
-    public void start(View view) {
-        Intent intent = new Intent(this, loginActivity.class);
-        startActivity(intent);
-    }
-
 }
-//TODO: change the pic
+//TODO: 1-when the user click on back return to login
+// 2-make sure the new password match with confirm password
+// 3-reset password button
+// 4-view password

@@ -34,3 +34,8 @@ public class SignUp4Activity extends AppCompatActivity {
     }
 
 }
+//TODO:
+// 1-get firstname and lastname from SignUp1
+// 2-change the pic
+// 3-allow the user to choose a pic for his profile
+// 4-when the user click on start create user profile & fo to main activity

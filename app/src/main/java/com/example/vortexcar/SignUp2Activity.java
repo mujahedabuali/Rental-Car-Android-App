@@ -28,3 +28,4 @@ public class SignUp2Activity extends AppCompatActivity {
     }
 
 }
+//TODO: phone(starts with +972) & email validity( valid and have @ ...)

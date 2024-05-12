@@ -29,3 +29,9 @@ public class loginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+//TODO:
+// 1-forget the pass
+// 2-check user login validity
+// 3-browse as a visitor
+// 4-view password
+// 5-when the user login and its a customer go to main activity (if admin another activity)

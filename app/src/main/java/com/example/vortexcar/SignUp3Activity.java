@@ -27,5 +27,6 @@ public class SignUp3Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
 }
+//TODO: save the password and make sure it mach the confirm password if not tell the user to check it again
+// + make the password visible or not for the user
