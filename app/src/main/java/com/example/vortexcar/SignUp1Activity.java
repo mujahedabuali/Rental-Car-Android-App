@@ -30,6 +30,8 @@ public class SignUp1Activity extends AppCompatActivity {
     public void signup2(View view) {
         Intent intent = new Intent(this, SignUp2Activity.class);
         startActivity(intent);
+        goToSignUp4(view);
+
     }
     public void goToSignUp4(View view) {
         String firstName = firstNameEditText.getText().toString();
