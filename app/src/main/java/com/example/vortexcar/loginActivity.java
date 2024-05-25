@@ -28,6 +28,11 @@ public class loginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, IntroActivity.class);
         startActivity(intent);
     }
+    public void login(View view) {
+        Intent intent = new Intent(this, homePage.class);
+        startActivity(intent);
+    }
+    
 }
 //TODO:
 // 1-forget the pass
