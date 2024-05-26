@@ -201,12 +201,13 @@
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         app:tint="@color/white"
-                        tools:srcCompat="@drawable/btn_2" />
+                        tools:srcCompat="@drawable/btn_2"
+                        android:onClick="myfavs"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -230,7 +231,8 @@
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         app:tint="@color/white"
-                        tools:srcCompat="@drawable/book_icon" />
+                        tools:srcCompat="@drawable/book_icon"
+                        android:onClick="mybookings"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -254,7 +256,8 @@
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         app:tint="@color/white"
-                        tools:srcCompat="@drawable/btn_4" />
+                        tools:srcCompat="@drawable/btn_4"
+                        android:onClick="myprofile"/>
 
                     <TextView
                         android:layout_width="match_parent"

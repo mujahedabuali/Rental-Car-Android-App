@@ -1,6 +1,8 @@
 package com.example.vortexcar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,19 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+    public void myfavs(View view) {
+        Intent intent = new Intent(this, MyFavourites.class);
+        startActivity(intent);
+    }  public void mybookings(View view) {
+        Intent intent = new Intent(this, MyBookings.class);
+        startActivity(intent);
+    }
+    //public void myprofile(View view) {
+//    Intent intent = new Intent(this, .class);
+//    startActivity(intent);
+//}
 }
+
 //TODO:
 // 1-search for car name
 // 2-explore
