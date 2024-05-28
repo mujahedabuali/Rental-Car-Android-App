@@ -317,15 +317,19 @@
                     app:layout_constraintStart_toStartOf="@+id/imageURL"
                     app:layout_constraintTop_toBottomOf="@+id/availability" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/load"
                     android:layout_width="87dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
                     android:text="Load"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="@+id/viewVehicle"
                     app:layout_constraintTop_toBottomOf="@+id/viewVehicle" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
