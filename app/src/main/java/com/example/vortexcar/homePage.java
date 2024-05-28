@@ -14,6 +14,3 @@ public class homePage extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 }
-//TODO: back arrow into main activity
-// +get customer & the car that he booked info
-// +return car button

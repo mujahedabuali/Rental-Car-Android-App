@@ -3,40 +3,73 @@ package com.example.vortexcar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.widget.TextViewCompat;
+
+import org.json.JSONObject;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
 
 public class loginActivity extends AppCompatActivity {
+
+    private EditText emailEditText;
+    private EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
+        emailEditText = findViewById(R.id.TextView11);
+        passwordEditText = findViewById(R.id.TextView111);
+        ImageView passwordToggle = findViewById(R.id.imageView15);
 
+        passwordToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePasswordVisibility();
+            }
+        });
     }
+
     public void registerNow(View view) {
         Intent intent = new Intent(this, SignUp1Activity.class);
         startActivity(intent);
     }
+
     public void Intro(View view) {
         Intent intent = new Intent(this, IntroActivity.class);
         startActivity(intent);
     }
-    public void login(View view) {
-        Intent intent = new Intent(this, homePage.class);
+
+    public void mainn(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    
+    public void browseAsVisitor(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void forgetPassword(View view) {
+        Intent intent = new Intent(this, ForgetPassword.class);
+        startActivity(intent);
+    }
+
+    private void togglePasswordVisibility() {
+        if (passwordEditText.getInputType() == (android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        } else {
+            passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+        passwordEditText.setSelection(passwordEditText.length());
+    }
 }
-//TODO:
-// 1-forget the pass
-// 2-check user login validity
-// 3-browse as a visitor
-// 4-view password
-// 5-when the user login and its a customer go to main activity (if admin another activity)
+//TODO: check user login

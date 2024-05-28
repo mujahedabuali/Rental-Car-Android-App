@@ -44,4 +44,6 @@ public class MainActivity extends AppCompatActivity {
 // 5-profile
 // 6-add cars pictures in the listview with the name
 // 7-when the user click on a car pic go to carinfo
+// +get customer & the car that he booked info
+// +return car button
 

@@ -32,10 +32,14 @@ public class SignUp4Activity extends AppCompatActivity {
         Intent intent = new Intent(this, SignUp3Activity.class);
         startActivity(intent);
     }
+    public void mainn(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }
 //TODO:
 // 1-get firstname and lastname from SignUp1
 // 2-change the pic
 // 3-allow the user to choose a pic for his profile
-// 4-when the user click on start create user profile & fo to main activity
+// 4-when the user click on start create user profile & go to main activity
