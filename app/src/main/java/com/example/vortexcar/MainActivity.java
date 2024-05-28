@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyBookings.class);
         startActivity(intent);
     }
-    //public void myprofile(View view) {
-//    Intent intent = new Intent(this, .class);
-//    startActivity(intent);
-//}
+    public void myprofile(View view) {
+    Intent intent = new Intent(this, Profile.class);
+    startActivity(intent);
+}
 }
 
 //TODO:
