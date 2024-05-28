@@ -229,44 +229,54 @@
                     app:layout_constraintStart_toStartOf="@+id/year"
                     app:layout_constraintTop_toBottomOf="@+id/imageURLText" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/add"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
                     android:text="Add"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="@+id/year"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/year"
                     app:layout_constraintTop_toBottomOf="@+id/load" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/reset"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Reset"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="@+id/add"
                     app:layout_constraintStart_toStartOf="@+id/add"
                     app:layout_constraintTop_toBottomOf="@+id/add" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/vehicleCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Add Vehicle Category"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="@+id/reset"
                     app:layout_constraintHorizontal_bias="0.471"
                     app:layout_constraintStart_toStartOf="@+id/reset"
                     app:layout_constraintTop_toBottomOf="@+id/reset" />
+
 
                 <CheckBox
                     android:id="@+id/availability"
@@ -278,20 +288,24 @@
                     app:layout_constraintStart_toStartOf="@+id/imageURL"
                     app:layout_constraintTop_toBottomOf="@+id/imageURL" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/viewResult"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="32dp"
                     android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="View Result"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/vehicleCategory"
                     app:layout_constraintStart_toStartOf="@+id/vehicleCategory"
                     app:layout_constraintTop_toBottomOf="@+id/vehicleCategory" />
+
 
                 <ImageView
                     android:id="@+id/viewVehicle"
