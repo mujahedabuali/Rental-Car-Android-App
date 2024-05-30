@@ -60,11 +60,14 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/intro_btn_background"
             android:ems="10"
-            android:hint="UserName"
-            android:inputType="text"
-            android:textAlignment="center"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:drawableStart="@drawable/email_icon"
+            android:drawablePadding="10dp"
+            android:paddingStart="40dp"
+            android:paddingLeft="40dp"/>
 
         <EditText
             android:id="@+id/TextView111"
@@ -78,9 +81,13 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:drawableStart="@android:drawable/ic_lock_idle_lock"
+            android:drawablePadding="10dp"
+            android:paddingStart="40dp"
+            android:paddingLeft="40dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

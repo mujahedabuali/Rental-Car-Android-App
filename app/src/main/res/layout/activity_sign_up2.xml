@@ -67,25 +67,31 @@
                 android:ems="10"
                 android:hint="Phone Number"
                 android:inputType="phone"
-                android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColorHint="@android:color/white"
+                android:drawableStart="@android:drawable/stat_sys_phone_call"
+                android:drawablePadding="10dp"
+                android:paddingStart="40dp"
+                android:paddingLeft="40dp"/>
 
             <EditText
                 android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/intro_btn_background"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:drawableStart="@drawable/email_icon"
+                android:drawablePadding="10dp"
+                android:paddingStart="40dp"
+                android:paddingLeft="40dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/nextButton"
