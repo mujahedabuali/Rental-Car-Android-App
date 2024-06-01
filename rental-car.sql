@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 28, 2024 at 06:41 PM
+-- Host: localhost
+-- Generation Time: May 31, 2024 at 09:26 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,8 +53,18 @@ CREATE TABLE `car` (
   `DailyPrice` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `color` varchar(50) NOT NULL,
-  `status` varchar(50) NOT NULL
+  `status` varchar(50) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `car`
+--
+
+INSERT INTO `car` (`ID`, `company`, `Model , year`, `Mileage`, `Seats number`, `MonthlyPrice`, `DailyPrice`, `price`, `color`, `status`, `image`) VALUES
+(1, 'Skoda', 'Octavia 2020', 1000, 4, 1200, 100, 130000, 'red', 'Free', 'Skoda.jpg'),
+(2, 'Seat', 'Leon 2021', 40000, 4, 2000, 300, 160000, 'black', 'Free', 'seat.jpg'),
+(3, 'Swift', 'q1 2022', 20000, 3, 3000, 350, 30000, 'blue', 'Free', 'swift.jpg');
 
 -- --------------------------------------------------------
 
@@ -110,7 +120,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `car`
 --
 ALTER TABLE `car`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rent`
