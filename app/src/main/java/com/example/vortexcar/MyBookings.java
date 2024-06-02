@@ -19,7 +19,7 @@ public class MyBookings extends AppCompatActivity {
         setContentView(R.layout.activity_my_bookings);
     }
     public void gotomain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, homePage.class);
         startActivity(intent);
     }
 }

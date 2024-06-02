@@ -33,7 +33,7 @@ public class SignUp4Activity extends AppCompatActivity {
         startActivity(intent);
     }
     public void mainn(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, homePage.class);
         startActivity(intent);
     }
 

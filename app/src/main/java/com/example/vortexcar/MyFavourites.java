@@ -20,7 +20,7 @@ public class MyFavourites extends AppCompatActivity {
 
     }
     public void gotomain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, homePage.class);
         startActivity(intent);
     }
 }

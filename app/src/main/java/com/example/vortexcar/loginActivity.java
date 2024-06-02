@@ -50,11 +50,11 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void mainn(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, homePage.class);
         startActivity(intent);
     }
     public void browseAsVisitor(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, homePage.class);
         startActivity(intent);
     }
 

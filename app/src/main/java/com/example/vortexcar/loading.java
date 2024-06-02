@@ -24,6 +24,6 @@ public class loading extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Finish the current activity
             }
-        }, 700);
+        }, 1000);
     }
 }

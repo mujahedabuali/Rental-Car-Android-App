@@ -1,5 +1,4 @@
 package com.example.vortexcar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +19,7 @@ public class Profile extends AppCompatActivity {
 
     }
     public void gotomain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, homePage.class);
         startActivity(intent);
     }
 }
