@@ -1,8 +1,13 @@
 package com.example.vortexcar;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -29,7 +35,7 @@ public class homePage extends AppCompatActivity {
     private TextView t ;
     private List<Car> carList = new ArrayList<>();;
     private carAdapter carAdapter;
-    private static  final String BASE_URL = "http://192.168.88.6/rental-car/getallcars.php";
+    private static  final String BASE_URL = "http://192.168.88.4/rental-car/getAllCars.php";
 
 
     @Override
