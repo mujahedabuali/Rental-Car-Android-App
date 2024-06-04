@@ -35,7 +35,7 @@ public class homePage extends AppCompatActivity {
     private TextView t ;
     private List<Car> carList = new ArrayList<>();;
     private carAdapter carAdapter;
-    private static  final String BASE_URL = "http://192.168.88.4/rental-car/getAllCars.php";
+    private static  final String BASE_URL = "http://192.168.88.9/rental-car/getAllCars.php";
 
 
     @Override
@@ -78,8 +78,9 @@ public class homePage extends AppCompatActivity {
                                 String color = object.getString("color");
                                 String status = object.getString("status");
                                 String image = object.getString("image");
+                                String imageF = "http://192.168.88.9/"+image;
 
-                                Car car = new Car(id,company, model_year, mileage, seats_number,  monthlyPrice, dailyPrice,  price,  color,  status,  image);
+                                Car car = new Car(id,company, model_year, mileage, seats_number,  monthlyPrice, dailyPrice,  price,  color,  status,  imageF);
                                 carList.add(car);
                             }
                         }catch (Exception e){
