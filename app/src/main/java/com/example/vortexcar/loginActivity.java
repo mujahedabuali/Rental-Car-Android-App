@@ -3,6 +3,7 @@ package com.example.vortexcar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import com.android.volley.RequestQueue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -101,7 +102,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     private void loginUser(final String email, final String password) {
-        String url = "http://192.168.88.6/rental-car/login.php";
+        String url = "http://192.168.88.9/rental-car/login.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -109,45 +110,34 @@ public class loginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jsonResponse = new JSONObject(response);
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
 
-                            if (jsonResponse.has("status") && jsonResponse.has("data")) {
-                                String status = jsonResponse.getString("status");
+                            if (status.equals("success")) {
+                                String message = jsonObject.getString("message");
+                                String accountId = jsonObject.getString("Account_id");
+                                String accountType = jsonObject.getString("Account_type");
 
-                                if ("success".equals(status)) {
-                                    JSONArray dataArray = jsonResponse.getJSONArray("data");
-                                    for (int i = 0; i < dataArray.length(); i++) {
-                                        JSONObject userObject = dataArray.getJSONObject(i);
-
-                                        if (userObject.has("email") && userObject.getString("email").equals(email) &&
-                                                userObject.has("password") && userObject.getString("password").equals(password)){ // Password check added
-
-                                            Toast.makeText(loginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(loginActivity.this, homePage.class);
-                                            startActivity(intent);
-                                            finish();
-                                            break;
-                                        }
-                                    }
-                                } else {
-                                    String message = jsonResponse.getString("message");
-                                    Toast.makeText(loginActivity.this, message,  Toast.LENGTH_SHORT).show();
-                                }
+                                Intent intent = new Intent(loginActivity.this, homePage.class);
+                                startActivity(intent);
                             } else {
-                                Toast.makeText(loginActivity.this, "Unexpected server response format", Toast.LENGTH_SHORT).show();
+                                String message = jsonObject.getString("message");
+                                Toast.makeText(loginActivity.this, message, Toast.LENGTH_SHORT).show();
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(loginActivity.this, "Error parsing server response", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(loginActivity.this, "JSON error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
-
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(loginActivity.this, "Error connecting to server", Toast.LENGTH_SHORT).show();
-            }
-        }) {
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(loginActivity.this, "Volley error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -157,8 +147,6 @@ public class loginActivity extends AppCompatActivity {
             }
         };
 
-        queue.add(stringRequest);
+        Volley.newRequestQueue(loginActivity.this).add(stringRequest);
     }
-
 }
-//TODO: check user login
