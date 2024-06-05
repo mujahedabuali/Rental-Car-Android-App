@@ -102,7 +102,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     private void loginUser(final String email, final String password) {
-        String url = "http://192.168.88.9/rental-car/login.php";
+        String url = "http://172.19.18.162/rental-car/login.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
