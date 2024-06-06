@@ -20,8 +20,6 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -147,6 +145,28 @@ public class loginActivity extends AppCompatActivity {
             }
         };
 
-        Volley.newRequestQueue(loginActivity.this).add(stringRequest);
+        queue.add(stringRequest);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Save user input (email and password) to SharedPreferences
+        saveCredentials();
+    }
+
+    private void saveCredentials() {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("email", emailEditText.getText().toString().trim());
+        editor.putString("password", passwordEditText.getText().toString().trim());
+        editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Exit the app
+        super.onBackPressed();
+        finishAffinity();
     }
 }

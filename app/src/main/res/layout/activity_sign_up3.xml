@@ -8,7 +8,7 @@
     tools:context=".SignUp3Activity">
 
     <ImageView
-        android:id="@+id/backButton"
+        android:id="@+id/backButton5"
         android:layout_width="32dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
