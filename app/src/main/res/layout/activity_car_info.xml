@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1C1B1B"
-    tools:context=".MainActivity">
+    tools:context=".CarInfo">
 
     <ScrollView
         android:id="@+id/scrollview"
@@ -174,12 +174,12 @@
                     android:textSize="18sp"
                     android:layout_gravity="center_vertical"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@android:style/Widget.Button"
                     android:id="@+id/daybutton"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="Rent"
-                    style="@android:style/Widget.Button"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/intro_btn_background"
                     android:gravity="center"
@@ -220,12 +220,12 @@
                     android:textSize="18sp"
                     android:layout_gravity="center_vertical"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@android:style/Widget.Button"
                     android:id="@+id/monthbutton"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="Rent"
-                    style="@android:style/Widget.Button"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/intro_btn_background"
                     android:gravity="center"
@@ -267,7 +267,8 @@
                     android:layout_gravity="center_vertical"
                     />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@android:style/Widget.Button"
                     android:id="@+id/dueDateButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

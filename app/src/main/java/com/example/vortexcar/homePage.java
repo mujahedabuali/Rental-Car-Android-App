@@ -4,10 +4,13 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +35,10 @@ import java.util.List;
 public class homePage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private TextView t ;
     private List<Car> carList = new ArrayList<>();;
     private carAdapter carAdapter;
-    private static  final String BASE_URL = "http://172.19.18.162/rental-car/getAllCars.php";
+    private EditText editTextSearch;
+    private static  final String BASE_URL = "http://10.0.2.2/rental-car/getAllCars.php";
 
 
     @Override
@@ -45,13 +48,29 @@ public class homePage extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         recyclerView = findViewById(R.id.view1);
-
-
+        editTextSearch = findViewById(R.id.search);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         carAdapter = new carAdapter(carList, this);
         recyclerView.setAdapter(carAdapter);
         loadItems();
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Not needed
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                carAdapter.filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Not needed
+            }
+        });
     }
 
     private void loadItems() {
@@ -78,7 +97,7 @@ public class homePage extends AppCompatActivity {
                                 String color = object.getString("color");
                                 String status = object.getString("status");
                                 String image = object.getString("image");
-                                String imageF = "http://172.19.18.162/"+image;
+                                String imageF = "http://10.0.2.2/"+image;
 
                                 Car car = new Car(id,company, model_year, mileage, seats_number,  monthlyPrice, dailyPrice,  price,  color,  status,  imageF);
                                 carList.add(car);
