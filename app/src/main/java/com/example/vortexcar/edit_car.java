@@ -5,36 +5,38 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.view.WindowCompat;
+
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.volley.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-public class AddCar extends AppCompatActivity {
+
+public class edit_car  extends AppCompatActivity {
+    private RequestQueue queue;
     private EditText companyEditText, seatsEditText, priceEditText, dailyPriceEditText, monthlyPriceEditText, mileageEditText, colorEditText, modelEditText, yearEditText, imageURLEditText;
-    private AppCompatButton saveButton, resetButton;
+    private AppCompatButton saveButton;
+    public int id = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_car);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        setContentView(R.layout.activity_edit_car);
 
         companyEditText = findViewById(R.id.company);
         seatsEditText = findViewById(R.id.seats);
@@ -48,8 +50,52 @@ public class AddCar extends AppCompatActivity {
         imageURLEditText = findViewById(R.id.imageURL);
 
         saveButton = findViewById(R.id.add);
-        resetButton = findViewById(R.id.reset);
 
+        queue = Volley.newRequestQueue(this);
+        Intent intent = getIntent();
+        id = intent.getIntExtra("id",1);
+
+        String url = vars.BASE_URL+"/rental-car/car/car.php?id="+id;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject e) {
+                        JSONObject obj = null;
+                        try {
+                            obj = e.getJSONObject("data");
+                        } catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        try {
+                            companyEditText.setText(obj.getString("company"));
+                            seatsEditText.setText(obj.getString("SeatsNumber"));
+                            priceEditText.setText(obj.getString("price"));
+                            dailyPriceEditText.setText(obj.getString("DailyPrice"));
+                            monthlyPriceEditText.setText(obj.getString("MonthlyPrice"));
+                            mileageEditText.setText(obj.getString("Mileage"));
+                            colorEditText.setText(obj.getString("color"));
+                            modelEditText.setText(obj.getString("Model_year"));
+                            yearEditText.setText(obj.getString("Model_year"));
+                            imageURLEditText.setText(obj.getString("image"));
+                        } catch (JSONException ep) {
+                            Log.e("err", "onResponse: ", ep);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG", "onErrorResponse: " + error.toString());
+                    }
+                }
+        );
+
+        // Add the request to the RequestQueue
+        queue.add(jsonObjectRequest);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,18 +103,7 @@ public class AddCar extends AppCompatActivity {
 
             }
         });
-
-
-
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetFields();
-            }
-        });
-
     }
-
     private void saveCar() {
         String company = companyEditText.getText().toString().trim();
         String seats = seatsEditText.getText().toString().trim();
@@ -82,22 +117,20 @@ public class AddCar extends AppCompatActivity {
         String imageURL = imageURLEditText.getText().toString().trim();
 
         if (company.isEmpty() || seats.isEmpty() || price.isEmpty() || dailyPrice.isEmpty() || monthlyPrice.isEmpty() || mileage.isEmpty() || color.isEmpty() || model.isEmpty() || year.isEmpty() || imageURL.isEmpty()) {
-            Toast.makeText(AddCar.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(edit_car.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        String url = vars.BASE_URL+"/rental-car/car/car.php";
-        RequestQueue queue = Volley.newRequestQueue(AddCar.this);
+
+        String url = vars.BASE_URL+"/rental-car/car/edit.php";
+        RequestQueue queue = Volley.newRequestQueue(edit_car.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject res = new JSONObject(response);
-                    String status = res.getString("status");
-                    if(status.equals("success")){
-                        resetFields();
-                    }
-                String message = res.getString("message");
-                Toast.makeText(AddCar.this, message, Toast.LENGTH_LONG).show();
+
+                    String message = res.getString("message");
+                    Toast.makeText(edit_car.this, message, Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -109,7 +142,7 @@ public class AddCar extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(AddCar.this, "Error: " + volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(edit_car.this, "Error: " + volleyError.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
         ) {
@@ -124,6 +157,7 @@ public class AddCar extends AppCompatActivity {
                 params.put("Mileage", mileage);
                 params.put("DailyPrice", dailyPrice);
                 params.put("color", color);
+                params.put("id", id+"");
                 params.put("image", imageURL);
                 return params;
             }
@@ -132,18 +166,5 @@ public class AddCar extends AppCompatActivity {
         queue.add(request);
 
 
-    }
-
-    private void resetFields() {
-        companyEditText.setText("");
-        seatsEditText.setText("");
-        priceEditText.setText("");
-        dailyPriceEditText.setText("");
-        monthlyPriceEditText.setText("");
-        mileageEditText.setText("");
-        colorEditText.setText("");
-        modelEditText.setText("");
-        yearEditText.setText("");
-        imageURLEditText.setText("");
     }
 }

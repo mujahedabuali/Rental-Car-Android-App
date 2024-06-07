@@ -2,284 +2,723 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1B1B"
+    android:background="@drawable/graient_color_background"
     tools:context=".CarInfo">
+    >
 
+    <TextView
+        android:id="@+id/vehicleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Year Manufacturer Model"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="32dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <ScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/graient_color_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/vehicleTitle">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Choose your ride:"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="18dp"
+                <ImageView
+                    android:id="@+id/vehicleImage"
+                    android:layout_width="401dp"
+                    android:layout_height="226dp"
                     android:layout_marginTop="24dp"
-                    android:layout_weight="1"
-                    android:text="Model:"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/modeledittext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:inputType="text"
-                    android:text="Model"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_weight="1"
-                    android:text="Year:"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/yearedittext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:inputType="text"
-                    android:text="Year"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_weight="1"
-                    android:text="Mileage:"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/mileageedittext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:inputType="text"
-                    android:text="Mileage"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/carimage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30sp"
-                android:maxWidth="360sp"
-                android:maxHeight="360sp"
-                android:minWidth="240sp"
-                android:minHeight="240sp"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="20sp">
-
-                <TextView
-                    android:id="@+id/priceforday"
+                    android:id="@+id/vehiclePrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:inputType="text"
-                    android:text="Rent price per day: "
-                    android:textAlignment="center"
+                    android:background="@drawable/price_tag"
+                    android:backgroundTint="#507c3660"
+                    android:padding="15dp"
+                    android:text="$00/Day"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="16sp"
-                    android:layout_gravity="center_vertical"/>
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/vehicleSpecCard"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicleImage" />
 
-                <EditText
-                    android:id="@+id/priceperdayedittext"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="25sp"
-                    android:minWidth="80dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:text="0$"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@android:style/Widget.Button"
-                    android:id="@+id/daybutton"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Rent"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/intro_btn_background"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:id="@+id/priceformonth"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/notAvailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:inputType="text"
-                    android:text="Rent price per month: "
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="16sp"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_marginStart="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/vehiclePrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/vehiclePrice">
 
-                <EditText
-                    android:id="@+id/pricepermonthedittext"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:minWidth="80dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:text="0$"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"/>
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/img" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@android:style/Widget.Button"
-                    android:id="@+id/monthbutton"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Rent"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/intro_btn_background"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/notAvailableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Not Available"
+                        android:textColor="#E90202"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@+id/imageView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="20sp">
-
-                <TextView
-                    android:id="@+id/dueDateLabel"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/available"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Due Date:"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="16sp"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_marginStart="24dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@+id/vehiclePrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/vehiclePrice">
 
-                <EditText
-                    android:id="@+id/dueDateEditText"
+                    <ImageView
+                        android:id="@+id/checkMark"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/img_1" />
+
+                    <TextView
+                        android:id="@+id/availableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Available"
+                        android:textColor="#3CFF00"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/checkMark"
+                        app:layout_constraintTop_toTopOf="@+id/checkMark" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/vehicleSpecCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="16sp"
-                    android:inputType="date"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"
-                    />
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    app:cardBackgroundColor="#507c3660"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vehiclePrice">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@android:style/Widget.Button"
-                    android:id="@+id/dueDateButton"
-                    android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#400f8a75"
+                        android:paddingBottom="10dp">
+
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="0dp"
+                            android:layout_height="0.3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="#707070"
+                            android:scrollbarThumbHorizontal="@color/cardview_dark_background"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/CarDiscriptionText" />
+
+                        <TextView
+                            android:id="@+id/CarDiscriptionText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="4dp"
+                            android:text="Car Description"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/yearText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="@color/white"
+                            android:text="Year"
+                            app:layout_constraintStart_toStartOf="@+id/CarDiscriptionText"
+                            app:layout_constraintTop_toBottomOf="@+id/CarDiscriptionText" />
+
+                        <TextView
+                            android:id="@+id/typeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Type"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/seatsText"
+                            app:layout_constraintStart_toStartOf="@+id/modelText"
+                            app:layout_constraintTop_toTopOf="@+id/seatsText" />
+
+                        <TextView
+                            android:id="@+id/seatsText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Seats"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/mileageText"
+                            app:layout_constraintStart_toStartOf="@+id/manufacturerText"
+                            app:layout_constraintTop_toTopOf="@+id/mileageText" />
+
+                        <TextView
+                            android:id="@+id/mileageText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:textColor="@color/white"
+                            android:text="Mileage"
+                            app:layout_constraintStart_toStartOf="@+id/CarDiscriptionText"
+                            app:layout_constraintTop_toBottomOf="@+id/yearText" />
+
+                        <TextView
+                            android:id="@+id/modelText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:text="Model"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/manufacturerText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/manufacturerText" />
+
+                        <TextView
+                            android:id="@+id/manufacturerText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Manufacturer"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/yearText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/yearText" />
+
+                        <TextView
+                            android:id="@+id/year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Year"
+                            app:layout_constraintStart_toStartOf="@+id/yearText"
+                            app:layout_constraintTop_toBottomOf="@+id/yearText" />
+
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Type"
+                            app:layout_constraintStart_toStartOf="@+id/typeText"
+                            app:layout_constraintTop_toBottomOf="@+id/typeText" />
+
+                        <TextView
+                            android:id="@+id/seats"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Seats"
+                            app:layout_constraintStart_toStartOf="@+id/seatsText"
+                            app:layout_constraintTop_toBottomOf="@+id/seatsText" />
+
+                        <TextView
+                            android:id="@+id/mileage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Mileage"
+                            app:layout_constraintStart_toStartOf="@+id/mileageText"
+                            app:layout_constraintTop_toBottomOf="@+id/mileageText" />
+
+                        <TextView
+                            android:id="@+id/model"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Model"
+                            app:layout_constraintStart_toStartOf="@+id/modelText"
+                            app:layout_constraintTop_toBottomOf="@+id/modelText" />
+
+                        <TextView
+                            android:id="@+id/manufacturer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Manufacturer"
+                            app:layout_constraintStart_toStartOf="@+id/manufacturerText"
+                            app:layout_constraintTop_toBottomOf="@+id/manufacturerText" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16sp"
-                    android:text="Select Date"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="#507c3660"
+                    app:layout_constraintEnd_toEndOf="@+id/vehicleSpecCard"
+                    app:layout_constraintStart_toStartOf="@+id/vehicleSpecCard"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicleSpecCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#400f8a75">
+
+                        <View
+                            android:id="@+id/divider2"
+                            android:layout_width="0dp"
+                            android:layout_height="0.3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="#707070"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/insurance" />
+
+                        <TextView
+                            android:id="@+id/insurance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="4dp"
+                            android:text="Insurance"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <RadioGroup
+                            android:id="@+id/insuranceOption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="24dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/insurance"
+                            app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+                            <RadioButton
+                                android:id="@+id/option_none"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:buttonTint="#507c3660"
+                                android:checked="true"
+                                android:text="None" />
+
+                            <LinearLayout
+                                android:id="@+id/insurance_none"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/none_cost"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="30dp"
+                                    android:text="$0"
+                                    android:textSize="12sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="30dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView2"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img" />
+
+                                        <TextView
+                                            android:id="@+id/cdw_none"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:paddingRight="5dp"
+                                            android:text="Collision Damage Waiver"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView3"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img" />
+
+                                        <TextView
+                                            android:id="@+id/slp_none"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Supplemental Liability Protection"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="30dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView4"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img" />
+
+                                        <TextView
+                                            android:id="@+id/pai_none"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Personal Accident Insurance"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView5"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img" />
+
+                                        <TextView
+                                            android:id="@+id/pec_none"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Personal Effects Coverage"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <RadioButton
+                                android:id="@+id/option_basic"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:buttonTint="#507c3660"
+                                android:text="Basic" />
+
+                            <LinearLayout
+                                android:id="@+id/insurance_basic"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/basic_cost"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="30dp"
+                                    android:text="$15"
+                                    android:textSize="12sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="30dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView6"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img_1" />
+
+                                        <TextView
+                                            android:id="@+id/cdw_basic"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:paddingRight="5dp"
+                                            android:text="Collision Damage Waiver"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView7"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img_1" />
+
+                                        <TextView
+                                            android:id="@+id/slp_basic"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Supplemental Liability Protection"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="30dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView8"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img" />
+
+                                        <TextView
+                                            android:id="@+id/pai_basic"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Personal Accident Insurance"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView9"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img" />
+
+                                        <TextView
+                                            android:id="@+id/pec_basic"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Personal Effects Coverage"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <RadioButton
+                                android:id="@+id/option_premium"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:buttonTint="#507c3660"
+                                android:text="Premium" />
+
+
+                            <LinearLayout
+                                android:id="@+id/insurance_premium"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/premium_cost"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="30dp"
+                                    android:text="$25"
+                                    android:textSize="12sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="30dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView10"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img_1" />
+
+                                        <TextView
+                                            android:id="@+id/cdw_premium"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:paddingRight="5dp"
+                                            android:text="Collision Damage Waiver"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView11"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img_1" />
+
+                                        <TextView
+                                            android:id="@+id/slp_premium"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Supplemental Liability Protection"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="30dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView12"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img_1" />
+
+                                        <TextView
+                                            android:id="@+id/pai_premium"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Personal Accident Insurance"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView13"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            app:srcCompat="@drawable/img_1" />
+
+                                        <TextView
+                                            android:id="@+id/pec_premium"
+                                            android:layout_width="150dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:paddingLeft="5dp"
+                                            android:text="Personal Effects Coverage"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </RadioGroup>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/book_this_car"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="40dp"
                     android:background="@drawable/intro_btn_background"
+                    android:gravity="center"
+                    android:text="Book This Car"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
+                    android:textSize="22dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView2"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="@+id/cardView2"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/btn_2"
+        tools:layout_editor_absoluteX="358dp"
+        tools:layout_editor_absoluteY="26dp"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
