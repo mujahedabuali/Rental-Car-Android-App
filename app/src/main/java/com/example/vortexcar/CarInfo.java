@@ -39,29 +39,29 @@ public class CarInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_info);
 
-        dueDateEditText = findViewById(R.id.dueDateEditText);
-        daybtn = findViewById(R.id.daybutton);
-        monthbtn = findViewById(R.id.monthbutton);
+//        dueDateEditText = findViewById(R.id.dueDateEditText);
+//        daybtn = findViewById(R.id.daybutton);
+//        monthbtn = findViewById(R.id.monthbutton);
+//
+//        carnameEDT = findViewById(R.id.textView);
+//        carmodelEDT = findViewById(R.id.modeledittext);
+//        mileageEDT = findViewById(R.id.mileageedittext);
+//        dailypriceEDT = findViewById(R.id.priceperdayedittext);
+//        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
+//        imageView = findViewById(R.id.carimage);
+//        Intent intent = getIntent();
+//        render(intent);
+//
+//
+//
+//        Button dueDateButton = findViewById(R.id.dueDateButton);
 
-        carnameEDT = findViewById(R.id.textView);
-        carmodelEDT = findViewById(R.id.modeledittext);
-        mileageEDT = findViewById(R.id.mileageedittext);
-        dailypriceEDT = findViewById(R.id.priceperdayedittext);
-        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
-        imageView = findViewById(R.id.carimage);
-        Intent intent = getIntent();
-        render(intent);
-
-
-
-        Button dueDateButton = findViewById(R.id.dueDateButton);
-
-        dueDateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
+//        dueDateButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDatePickerDialog();
+//            }
+//        });
 
         dueDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -26,4 +26,3 @@ public class IntroActivity extends AppCompatActivity {
     }
 
 }
-//TODO: change the pic

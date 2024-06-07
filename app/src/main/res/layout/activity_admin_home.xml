@@ -99,8 +99,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_width="448dp"
+            android:layout_height="96dp"
             android:layout_gravity="bottom"
             android:backgroundTint="#282f32">
 
@@ -110,6 +110,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="10dp">
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/allcars"
                     style="@android:style/Widget.Button"
@@ -153,8 +154,6 @@
                     android:text="Report"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
-
-
 
 
             </LinearLayout>

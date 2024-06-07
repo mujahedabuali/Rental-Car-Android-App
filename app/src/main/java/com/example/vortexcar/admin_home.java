@@ -32,10 +32,9 @@ import java.util.List;
 public class admin_home extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private TextView t ;
     private List<Car> carList = new ArrayList<>();;
     private carAdapterForAdmin carAdapterForAdmin;
-    private static  final String BASE_URL = vars.BASE_URL+"/rental-car/getAllCars.php";
+    private static  final String BASE_URL ="http://10.0.2.2/rental-car/getAllCars.php";
 
 
     @Override
@@ -45,8 +44,6 @@ public class admin_home extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home);
 
         recyclerView = findViewById(R.id.view1);
-
-
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         carAdapterForAdmin = new carAdapterForAdmin(carList, this);
@@ -70,15 +67,15 @@ public class admin_home extends AppCompatActivity {
                                 int id = object.getInt("ID");
                                 String company = object.getString("company");
                                 int mileage = object.getInt("Mileage");
-                                int seats_number = object.getInt("SeatsNumber");
+                                int seats_number = object.getInt("Seats number");
                                 int monthlyPrice = object.getInt("MonthlyPrice");
                                 int dailyPrice = object.getInt("DailyPrice");
                                 int price = object.getInt("price");
-                                String model_year = object.getString("Model_year");
+                                String model_year = object.getString("Model , year");
                                 String color = object.getString("color");
                                 String status = object.getString("status");
                                 String image = object.getString("image");
-                                String imageF = "http://192.168.88.9/rental-car"+image;
+                                String imageF = "http://10.0.2.2/"+image;
 
                                 Car car = new Car(id,company, model_year, mileage, seats_number,  monthlyPrice, dailyPrice,  price,  color,  status,  imageF);
                                 carList.add(car);

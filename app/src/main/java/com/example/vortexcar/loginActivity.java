@@ -18,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +28,6 @@ import java.util.Map;
 public class loginActivity extends AppCompatActivity {
 
     private EditText emailEditText;
-    private FirebaseAuth mAuth;
     private EditText passwordEditText;
 
     @Override
@@ -37,7 +35,6 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
         emailEditText = findViewById(R.id.TextView11);
         passwordEditText = findViewById(R.id.TextView111);
         ImageView passwordToggle = findViewById(R.id.imageView15);
@@ -120,8 +117,13 @@ public class loginActivity extends AppCompatActivity {
                                 String accountId = jsonObject.getString("Account_id");
                                 String accountType = jsonObject.getString("Account_type");
 
-                                Intent intent = new Intent(loginActivity.this, homePage.class);
-                                startActivity(intent);
+                                if (accountType.equals("user")) {
+                                    Intent intent = new Intent(loginActivity.this, homePage.class);
+                                    startActivity(intent);
+                                } else if (accountType.equals("admin")) {
+                                    Intent intent = new Intent(loginActivity.this, admin_home.class);
+                                    startActivity(intent);
+                                }
                             } else {
                                 String message = jsonObject.getString("message");
                                 Toast.makeText(loginActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -151,8 +153,6 @@ public class loginActivity extends AppCompatActivity {
         };
 
         queue.add(stringRequest);
-
-        mAuth.signInWithEmailAndPassword(email, password);
 
     }
 

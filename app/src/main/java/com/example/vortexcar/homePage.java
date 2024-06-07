@@ -50,14 +50,13 @@ public class homePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
+        FirebaseApp.initializeApp(this);
 
         recyclerView = findViewById(R.id.view1);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         FirebaseApp.initializeApp(this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         carAdapter = new carAdapter(carList, this);
@@ -74,9 +73,9 @@ public class homePage extends AppCompatActivity {
         if (itemId == R.id.navigation_home) {
             startActivity(new Intent(homePage.this, homePage.class));
             return true;
-        } else if (itemId == R.id.navigation_chat) {
-            startActivity(new Intent(homePage.this, ChatActivity.class));
-            return true;
+//        } else if (itemId == R.id.navigation_chat) {
+//            startActivity(new Intent(homePage.this, ChatActivity.class));
+//            return true;
 
         } else if (itemId == R.id.navigation_chat) {
             startActivity(new Intent(homePage.this, Profile.class));

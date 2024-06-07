@@ -55,7 +55,7 @@ public class edit_car  extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getIntExtra("id",1);
 
-        String url = vars.BASE_URL+"/rental-car/car/car.php?id="+id;
+        String url = "http://10.0.2.2/rental-car/car/car.php?id="+id;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -78,8 +78,8 @@ public class edit_car  extends AppCompatActivity {
                             monthlyPriceEditText.setText(obj.getString("MonthlyPrice"));
                             mileageEditText.setText(obj.getString("Mileage"));
                             colorEditText.setText(obj.getString("color"));
-                            modelEditText.setText(obj.getString("Model_year"));
-                            yearEditText.setText(obj.getString("Model_year"));
+                            modelEditText.setText(obj.getString("Model , year"));
+                            yearEditText.setText(obj.getString("Model , year"));
                             imageURLEditText.setText(obj.getString("image"));
                         } catch (JSONException ep) {
                             Log.e("err", "onResponse: ", ep);
@@ -121,7 +121,7 @@ public class edit_car  extends AppCompatActivity {
             return;
         }
 
-        String url = vars.BASE_URL+"/rental-car/car/edit.php";
+        String url = "http://10.0.2.2/rental-car/car/edit.php";
         RequestQueue queue = Volley.newRequestQueue(edit_car.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -152,7 +152,7 @@ public class edit_car  extends AppCompatActivity {
                 params.put("company", company);
                 params.put("SeatsNumber", seats);
                 params.put("price", price);
-                params.put("model_year", year);
+                params.put("Model , year", year);
                 params.put("MonthlyPrice", monthlyPrice);
                 params.put("Mileage", mileage);
                 params.put("DailyPrice", dailyPrice);

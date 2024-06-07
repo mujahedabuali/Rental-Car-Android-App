@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import com.google.firebase.FirebaseApp;
 public class loading extends AppCompatActivity {
 
     @Override
@@ -14,6 +15,7 @@ public class loading extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_loading);
+        FirebaseApp.initializeApp(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
