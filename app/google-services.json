@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "521531619684",
+    "project_id": "vortex-rental-car",
+    "storage_bucket": "vortex-rental-car.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521531619684:android:477d2c612ba9b268d9e271",
+        "android_client_info": {
+          "package_name": "com.example.vortexcar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhza79qbNuAem0sbVvCLlFcYwDSXLoNgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

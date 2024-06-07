@@ -81,6 +81,7 @@
                     android:paddingEnd="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
@@ -96,135 +97,150 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:visibility="visible" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
     </ScrollView>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="404dp"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="485dp"
         android:layout_height="84dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
         android:backgroundTint="#282f32"
-        android:padding="15dp"
-        android:paddingBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="@id/scrollview"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_gravity="bottom"
-            android:backgroundTint="#282f32"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/explore"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        app:tint="@color/white"
-                        tools:srcCompat="@drawable/btn_1" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Expolrer"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"></TextView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/favs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        app:tint="@color/white"
-                        tools:srcCompat="@drawable/btn_2"
-                        android:onClick="myfavs"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Favorite"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"></TextView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/bookings"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        app:tint="@color/white"
-                        tools:srcCompat="@drawable/book_icon"
-                        android:onClick="mybookings"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Bookings"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"></TextView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/profile"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        app:tint="@color/white"
-                        tools:srcCompat="@drawable/btn_4"
-                        android:onClick="myprofile"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Profile"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"></TextView>
 
 
-                </LinearLayout>
-            </LinearLayout>
+
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:layout_width="404dp"-->
+<!--        android:layout_height="84dp"-->
+<!--        android:backgroundTint="#282f32"-->
+<!--        android:padding="15dp"-->
+<!--        android:paddingBottom="40dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/scrollview"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/scrollview">-->
+
+        <!--        <com.google.android.material.bottomappbar.BottomAppBar-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="55dp"-->
+        <!--            android:layout_gravity="bottom"-->
+        <!--            android:backgroundTint="#282f32"/>-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:orientation="horizontal">-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:layout_weight="0.25"-->
+        <!--                    android:orientation="vertical">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/explore"-->
+        <!--                        android:layout_width="24dp"-->
+        <!--                        android:layout_height="24dp"-->
+        <!--                        android:layout_gravity="center"-->
+        <!--                        android:layout_margin="5dp"-->
+        <!--                        app:tint="@color/white"-->
+        <!--                        tools:srcCompat="@drawable/btn_1" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="Expolrer"-->
+        <!--                        android:textAlignment="center"-->
+        <!--                        android:textColor="@color/white"></TextView>-->
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <!--                </LinearLayout>-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:layout_weight="0.25"-->
+        <!--                    android:orientation="vertical">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/favs"-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:layout_gravity="center"-->
+        <!--                        android:layout_margin="5dp"-->
+        <!--                        app:tint="@color/white"-->
+        <!--                        tools:srcCompat="@drawable/btn_2"-->
+        <!--                        android:onClick="myfavs"/>-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="Favorite"-->
+        <!--                        android:textAlignment="center"-->
+        <!--                        android:textColor="@color/white"></TextView>-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:layout_weight="0.25"-->
+        <!--                    android:orientation="vertical">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/bookings"-->
+        <!--                        android:layout_width="24dp"-->
+        <!--                        android:layout_height="24dp"-->
+        <!--                        android:layout_gravity="center"-->
+        <!--                        android:layout_margin="5dp"-->
+        <!--                        app:tint="@color/white"-->
+        <!--                        tools:srcCompat="@drawable/book_icon"-->
+        <!--                        android:onClick="mybookings"/>-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="Bookings"-->
+        <!--                        android:textAlignment="center"-->
+        <!--                        android:textColor="@color/white"></TextView>-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:layout_weight="0.25"-->
+        <!--                    android:orientation="vertical">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/profile"-->
+        <!--                        android:layout_width="24dp"-->
+        <!--                        android:layout_height="24dp"-->
+        <!--                        android:layout_gravity="center"-->
+        <!--                        android:layout_margin="5dp"-->
+        <!--                        app:tint="@color/white"-->
+        <!--                        tools:srcCompat="@drawable/btn_4"-->
+        <!--                        android:onClick="myprofile"/>-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="Profile"-->
+        <!--                        android:textAlignment="center"-->
+        <!--                        android:textColor="@color/white"></TextView>-->
+
+
+        <!--                </LinearLayout>-->
+        <!--            </LinearLayout>-->
+
+
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

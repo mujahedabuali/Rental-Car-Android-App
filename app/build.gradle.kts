@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("com.google.gms.google-services")
 }
+
 
 android {
     namespace = "com.example.vortexcar"
@@ -32,6 +34,13 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.android.material:material:1.4.0")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation ("com.google.firebase:firebase-auth")
+    implementation ("com.google.firebase:firebase-messaging")
+    implementation ("com.google.firebase:firebase-inappmessaging-display:21.0.0messaging")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation ("com.android.volley:volley:1.2.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
