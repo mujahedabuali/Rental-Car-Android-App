@@ -203,7 +203,7 @@
                             android:text="Seats"
                             android:textColor="@color/white"
                             app:layout_constraintBottom_toBottomOf="@+id/mileageText"
-                            app:layout_constraintStart_toStartOf="@+id/colorText"
+                            app:layout_constraintStart_toStartOf="@+id/manufacturerText"
                             app:layout_constraintTop_toTopOf="@+id/mileageText" />
 
                         <TextView
@@ -223,12 +223,12 @@
                             android:layout_marginEnd="24dp"
                             android:text="Model"
                             android:textColor="@color/white"
-                            app:layout_constraintBottom_toBottomOf="@+id/colorText"
+                            app:layout_constraintBottom_toBottomOf="@+id/manufacturerText"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/colorText" />
+                            app:layout_constraintTop_toTopOf="@+id/manufacturerText" />
 
                         <TextView
-                            android:id="@+id/colorText"
+                            android:id="@+id/manufacturerText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Manufacturer"
@@ -284,13 +284,13 @@
                             app:layout_constraintTop_toBottomOf="@+id/modelText" />
 
                         <TextView
-                            android:id="@+id/color"
+                            android:id="@+id/manufacturer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Manufacturer"
-                            app:layout_constraintStart_toStartOf="@+id/colorText"
-                            app:layout_constraintTop_toBottomOf="@+id/colorText" />
+                            app:layout_constraintStart_toStartOf="@+id/manufacturerText"
+                            app:layout_constraintTop_toBottomOf="@+id/manufacturerText" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

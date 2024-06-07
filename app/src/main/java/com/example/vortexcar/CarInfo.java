@@ -1,60 +1,162 @@
 package com.example.vortexcar;
-
-import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.bumptech.glide.Glide;
-import android.content.Intent;
-import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+
 public class CarInfo extends AppCompatActivity {
+
+    private EditText dueDateEditText;
+    private TextView carnameEDT;
+    private EditText carmodelEDT;
+    private EditText dailypriceEDT;
+    private EditText monthlypriceEDT;
+    private EditText mileageEDT;
+    private ImageView imageView;
+    private Button daybtn;
+    private Button monthbtn;
+    private String dueDate ="";
+
+    private double dailyPrice;
+    private double monthlyPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_car_info);
 
-//        ImageView imageViewCar = findViewById(R.id.imageViewCarDetail);
-//        TextView textViewCarName = findViewById(R.id.textViewCarNameDetail);
-//        TextView textViewCarModel = findViewById(R.id.textViewCarModelDetail);
-//        TextView textViewCarColor = findViewById(R.id.textViewCarColorDetail);
-//        TextView textViewCarDailyPrice = findViewById(R.id.textViewCarDailyPriceDetail);
-//        TextView textViewCarMonthlyPrice = findViewById(R.id.textViewCarMonthlyPriceDetail);
+        dueDateEditText = findViewById(R.id.dueDateEditText);
+        daybtn = findViewById(R.id.daybutton);
+        monthbtn = findViewById(R.id.monthbutton);
 
+        carnameEDT = findViewById(R.id.textView);
+        carmodelEDT = findViewById(R.id.modeledittext);
+        mileageEDT = findViewById(R.id.mileageedittext);
+        dailypriceEDT = findViewById(R.id.priceperdayedittext);
+        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
+        imageView = findViewById(R.id.carimage);
         Intent intent = getIntent();
-        if (intent != null) {
-            String imageUrl = intent.getStringExtra("imageUrl");
-            String carName = intent.getStringExtra("carName");
-            String carModel = intent.getStringExtra("carModel");
-            String carColor = intent.getStringExtra("carColor");
-            int dailyPrice = intent.getIntExtra("dailyPrice", 0);
-            int monthlyPrice = intent.getIntExtra("monthlyPrice", 0);
+        render(intent);
 
-//            Glide.with(this).load(imageUrl).into(imageViewCar);
-//            textViewCarName.setText(carName);
-//            textViewCarModel.setText(carModel);
-//            textViewCarColor.setText(carColor);
-//            textViewCarDailyPrice.setText(String.valueOf(dailyPrice));
-//            textViewCarMonthlyPrice.setText(String.valueOf(monthlyPrice));
+
+
+        Button dueDateButton = findViewById(R.id.dueDateButton);
+
+        dueDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
+        dueDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
+        daybtn.setOnClickListener(e->{
+            startNext(true);
+        });
+        monthbtn.setOnClickListener(e->{
+            startNext(false);
+        });
+    }
+
+    private void startNext(boolean dayrent) {
+        if (!dueDate.equals("")){
+            if (dayrent){
+                double days = getDays(dueDate);
+                Intent intent = new Intent(this, Bookings.class);
+                intent.putExtra("carInfo", String.valueOf(carnameEDT.getText())+" "+carmodelEDT.getText());
+                intent.putExtra("carModel",carmodelEDT.getText()+"");
+                intent.putExtra("dropoff",dueDate);
+                intent.putExtra("rate",dailyPrice);
+                intent.putExtra("daysNumber",days);
+                intent.putExtra("total",days*dailyPrice);
+                this.startActivity(intent);
+            }
+            else {
+                double days = getDays(dueDate);
+                Intent intent = new Intent(this, Bookings.class);
+                intent.putExtra("carInfo", String.valueOf(carnameEDT.getText())+" "+carmodelEDT.getText());
+                intent.putExtra("carModel",carmodelEDT.getText()+"");
+                intent.putExtra("dropoff",dueDate);
+                intent.putExtra("rate",monthlyPrice);
+                intent.putExtra("daysNumber",days);
+                intent.putExtra("total",days*monthlyPrice);
+                this.startActivity(intent);
+            }
         }
 
     }
-}
-//TODO:
-// 1- the back button return into the main activity
-// 2- when the user click on the heart the car goes into favorites
-// 3- user can pick 3 types of car insurance :none,basic,premium
-// 4-when the user click on book car button it goes into the booking
-// 5- if the car is available only the available textview will appear if not the not available will
 
+    private void render(Intent intent) {
+        String carName = intent.getStringExtra("carName");
+        String model = intent.getStringExtra("carModel");
+        String mileage = intent.getStringExtra("mileage");
+        String dailyPrice = intent.getStringExtra("dailyPrice");
+        String monthlyPrice = intent.getStringExtra("monthlyPrice");
+        String url = intent.getStringExtra("imageUrl");
+
+        this.dailyPrice = Double.parseDouble(dailyPrice);
+        this.monthlyPrice = Double.parseDouble(monthlyPrice);
+
+        carnameEDT.setText(carName);
+        carmodelEDT.setText(model);
+        mileageEDT.setText(mileage+" KM");
+        Log.d("mileage is"," traa"+mileage);
+        dailypriceEDT.setText(String.valueOf(dailyPrice)+" $");
+        monthlypriceEDT.setText(String.valueOf(monthlyPrice)+" $");
+
+        if (url != null) {
+            Glide.with(this)
+                    .load(url)
+                    .into(imageView);
+        }
+    }
+
+    private void showDatePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                CarInfo.this,
+                (view, year1, month1, dayOfMonth) -> {
+
+                    dueDate = dayOfMonth + "/" +(month1 + 1 <10? "0"+ (month1+1) : (month1+1)) + "/" + year1;
+                    dueDateEditText.setText(dueDate);
+                },
+                year, month, day
+        );
+        datePickerDialog.show();
+    }
+    private static double getDays(String date){
+        DateTimeFormatter formatter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate givenDate = LocalDate.parse(date, formatter);
+            LocalDate today = LocalDate.now();
+            long daysBetween = ChronoUnit.DAYS.between(today, givenDate);
+            return daysBetween;
+        }
+        return 0;
+    }
+}

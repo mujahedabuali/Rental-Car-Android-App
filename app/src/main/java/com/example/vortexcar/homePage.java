@@ -35,7 +35,7 @@ public class homePage extends AppCompatActivity {
     private TextView t ;
     private List<Car> carList = new ArrayList<>();;
     private carAdapter carAdapter;
-    private static  final String BASE_URL = "http://192.168.88.9/rental-car/getAllCars.php";
+    private static  final String BASE_URL = "http://10.0.2.2/rental-car/getAllCars.php";
 
 
     @Override
@@ -78,7 +78,7 @@ public class homePage extends AppCompatActivity {
                                 String color = object.getString("color");
                                 String status = object.getString("status");
                                 String image = object.getString("image");
-                                String imageF = "http://192.168.88.9/"+image;
+                                String imageF = "http://10.0.2.2/"+image;
 
                                 Car car = new Car(id,company, model_year, mileage, seats_number,  monthlyPrice, dailyPrice,  price,  color,  status,  imageF);
                                 carList.add(car);
@@ -107,6 +107,7 @@ public class homePage extends AppCompatActivity {
     public void myfavs(View view) {
         Intent intent = new Intent(this, MyFavourites.class);
         startActivity(intent);
+
     }  public void mybookings(View view) {
         Intent intent = new Intent(this, MyBookings.class);
         startActivity(intent);
@@ -115,4 +116,11 @@ public class homePage extends AppCompatActivity {
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
+        // Remove the task associated with this activity from the back stack
+        super.onBackPressed();
+        moveTaskToBack(true);
+    }
+
 }
