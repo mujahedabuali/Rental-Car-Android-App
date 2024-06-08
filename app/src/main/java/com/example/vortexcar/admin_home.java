@@ -67,11 +67,11 @@ public class admin_home extends AppCompatActivity {
                                 int id = object.getInt("ID");
                                 String company = object.getString("company");
                                 int mileage = object.getInt("Mileage");
-                                int seats_number = object.getInt("Seats number");
+                                int seats_number = object.getInt("SeatsNumber");
                                 int monthlyPrice = object.getInt("MonthlyPrice");
                                 int dailyPrice = object.getInt("DailyPrice");
                                 int price = object.getInt("price");
-                                String model_year = object.getString("Model , year");
+                                String model_year = object.getString("Model_year");
                                 String color = object.getString("color");
                                 String status = object.getString("status");
                                 String image = object.getString("image");

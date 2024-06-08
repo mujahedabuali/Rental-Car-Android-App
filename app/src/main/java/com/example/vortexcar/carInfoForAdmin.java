@@ -101,7 +101,7 @@ public class carInfoForAdmin extends AppCompatActivity {
 
     private void performDeleteOperation() {
 
-            String url = vars.BASE_URL+"/rental-car/car/delete.php";
+            String url = "http://10.0.2.2/rental-car/car/delete.php";
             RequestQueue queue = Volley.newRequestQueue(carInfoForAdmin.this);
             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override

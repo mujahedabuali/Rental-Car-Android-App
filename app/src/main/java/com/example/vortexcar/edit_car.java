@@ -78,8 +78,8 @@ public class edit_car  extends AppCompatActivity {
                             monthlyPriceEditText.setText(obj.getString("MonthlyPrice"));
                             mileageEditText.setText(obj.getString("Mileage"));
                             colorEditText.setText(obj.getString("color"));
-                            modelEditText.setText(obj.getString("Model , year"));
-                            yearEditText.setText(obj.getString("Model , year"));
+                            modelEditText.setText(obj.getString("Model_year"));
+                            yearEditText.setText(obj.getString("Model_year"));
                             imageURLEditText.setText(obj.getString("image"));
                         } catch (JSONException ep) {
                             Log.e("err", "onResponse: ", ep);
