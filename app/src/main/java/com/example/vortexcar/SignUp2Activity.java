@@ -35,8 +35,8 @@ public class SignUp2Activity extends AppCompatActivity {
         String lastName = intent1.getStringExtra("lastName");
         String selectedItem = intent1.getStringExtra("gender");
 
-        String email = phoneEditText.getText().toString();
-        String phone = emailEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
 
         if (email.isEmpty()) {
             Toast.makeText(SignUp2Activity.this, "Please enter the Email", Toast.LENGTH_SHORT).show();
