@@ -116,6 +116,17 @@ public class loginActivity extends AppCompatActivity {
                                 String message = jsonObject.getString("message");
                                 String accountId = jsonObject.getString("Account_id");
                                 String accountType = jsonObject.getString("Account_type");
+                                String name = jsonObject.optString("name", "");
+                                String gender = jsonObject.optString("gender", "");
+                                String phone = jsonObject.optString("phone", "");
+
+                                // Split the full name into first name and last name
+                                String[] nameParts = name.split(" ", 2);
+                                String firstName = nameParts.length > 0 ? nameParts[0] : "";
+                                String lastName = nameParts.length > 1 ? nameParts[1] : "";
+
+                                // Save user data to SharedPreferences
+                                saveUserData(email, firstName, lastName, gender, phone);
 
                                 if (accountType.equals("user")) {
                                     Intent intent = new Intent(loginActivity.this, homePage.class);
@@ -153,8 +164,19 @@ public class loginActivity extends AppCompatActivity {
         };
 
         queue.add(stringRequest);
-
     }
+
+    private void saveUserData(String email, String firstName, String lastName, String gender, String phone) {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("email", email);
+        editor.putString("first_name", firstName);
+        editor.putString("last_name", lastName);
+        editor.putString("gender", gender);
+        editor.putString("phone", phone);
+        editor.apply();
+    }
+
 
     @Override
     protected void onPause() {
