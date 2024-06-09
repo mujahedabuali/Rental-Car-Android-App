@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class Profile extends AppCompatActivity {
     EditText phoneEditText;
     EditText passwordEditText;
     CheckBox showPasswordCheckBox;
+    Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class Profile extends AppCompatActivity {
         phoneEditText = findViewById(R.id.phoneEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         showPasswordCheckBox = findViewById(R.id.showPasswordCheckBox);
+        logoutButton = findViewById(R.id.logoutButton);
+
 
         // Retrieve user data from SharedPreferences
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -106,8 +110,22 @@ public class Profile extends AppCompatActivity {
 
     public void enableEditing(View view) {
         setFieldsEditable(true);
-        findViewById(R.id.saveButton).setVisibility(View.VISIBLE);
-        findViewById(R.id.edit).setVisibility(View.GONE);
+
+        // Debug logging
+        View saveButton = findViewById(R.id.saveButton);
+        View editButton = findViewById(R.id.editButton);
+
+        if (saveButton != null) {
+            saveButton.setVisibility(View.VISIBLE);
+        } else {
+            Toast.makeText(this, "Save button not found", Toast.LENGTH_SHORT).show();
+        }
+
+        if (editButton != null) {
+            editButton.setVisibility(View.GONE);
+        } else {
+            Toast.makeText(this, "Edit button not found", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void saveChanges(View view) {
@@ -125,8 +143,21 @@ public class Profile extends AppCompatActivity {
         editor.apply();
 
         setFieldsEditable(false);
-        findViewById(R.id.saveButton).setVisibility(View.GONE);
-        findViewById(R.id.edit).setVisibility(View.VISIBLE);
+
+        View saveButton = findViewById(R.id.saveButton);
+        View editButton = findViewById(R.id.editButton);
+
+        if (saveButton != null) {
+            saveButton.setVisibility(View.GONE);
+        } else {
+            Toast.makeText(this, "Save button not found", Toast.LENGTH_SHORT).show();
+        }
+
+        if (editButton != null) {
+            editButton.setVisibility(View.VISIBLE);
+        } else {
+            Toast.makeText(this, "Edit button not found", Toast.LENGTH_SHORT).show();
+        }
 
         Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
 
@@ -174,40 +205,41 @@ public class Profile extends AppCompatActivity {
             String password = params[5];
 
             try {
-                URL url = new URL("http://10.0.2.2/rental-car/login.php");
-
+                URL url = new URL("http://192.168.50.88/VortexCar/update_profile.php");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                 connection.setDoOutput(true);
+                connection.setDoInput(true);
+                connection.setRequestProperty("Content-Type", "application/json");
 
-                JSONObject profileData = new JSONObject();
-                profileData.put("first_name", firstName);
-                profileData.put("last_name", lastName);
-                profileData.put("gender", gender);
-                profileData.put("email", email);
-                profileData.put("phone", phone);
-                profileData.put("password", password);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("first_name", firstName);
+                jsonObject.put("last_name", lastName);
+                jsonObject.put("gender", gender);
+                jsonObject.put("email", email);
+                jsonObject.put("phone", phone);
+                jsonObject.put("password", password);
 
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
-                writer.write(profileData.toString());
+                writer.write(jsonObject.toString());
                 writer.flush();
                 writer.close();
 
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line;
                     StringBuilder response = new StringBuilder();
+                    String line;
                     while ((line = reader.readLine()) != null) {
                         response.append(line);
                     }
                     reader.close();
-                    return true;
+
+                    JSONObject responseObject = new JSONObject(response.toString());
+                    return responseObject.getBoolean("success");
                 } else {
                     return false;
                 }
-
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
                 return false;
@@ -217,7 +249,7 @@ public class Profile extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                Toast.makeText(Profile.this, "Profile updated on server successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile.this, "Profile updated on server", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(Profile.this, "Failed to update profile on server", Toast.LENGTH_SHORT).show();
             }
