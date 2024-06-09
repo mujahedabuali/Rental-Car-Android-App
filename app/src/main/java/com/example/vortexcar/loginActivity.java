@@ -181,7 +181,6 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Save user input (email and password) to SharedPreferences
         saveCredentials();
     }
 

@@ -9,7 +9,7 @@
         android:icon="@drawable/btn_4"
         android:title="Profile" />
     <item
-        android:id="@+id/navigation_chat"
+        android:id="@+id/navigation_cart"
         android:icon="@drawable/float_icon"
-        android:title="Chat" />
+        android:title="My Cart" />
 </menu>

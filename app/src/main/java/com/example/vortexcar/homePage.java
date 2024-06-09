@@ -68,16 +68,15 @@ public class homePage extends AppCompatActivity {
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
 
-        Fragment selectedFragment = null;
         int itemId = item.getItemId();
         if (itemId == R.id.navigation_home) {
             startActivity(new Intent(homePage.this, homePage.class));
             return true;
-//        } else if (itemId == R.id.navigation_chat) {
-//            startActivity(new Intent(homePage.this, ChatActivity.class));
-//            return true;
+        } else if (itemId == R.id.navigation_cart) {
+            startActivity(new Intent(homePage.this, MyBookings.class));
+            return true;
 
-        } else if (itemId == R.id.navigation_chat) {
+        } else if (itemId == R.id.navigation_profile) {
             startActivity(new Intent(homePage.this, Profile.class));
             return true;
         }

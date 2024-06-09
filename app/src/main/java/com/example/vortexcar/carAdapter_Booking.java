@@ -16,13 +16,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class carAdapter extends RecyclerView.Adapter<carAdapter.CarViewHolder> {
+public class carAdapter_Booking extends RecyclerView.Adapter<carAdapter_Booking.CarViewHolder> {
 
     private List<Car> carList;
     private List<Car> carListFull;
     private Context context;
 
-    public carAdapter(List<Car> carList, Context context) {
+    public carAdapter_Booking(List<Car> carList, Context context) {
         this.carList = carList;
         this.context = context;
         this.carListFull = new ArrayList<>(carList);
@@ -81,20 +81,6 @@ public class carAdapter extends RecyclerView.Adapter<carAdapter.CarViewHolder> {
         }
     }
 
-    public void filter(String text) {
-        carList.clear();
-        if (text.isEmpty()) {
-            carList.addAll(carListFull);
-        } else {
-            text = text.toLowerCase();
-            for (Car car : carListFull) {
-                if (car.getCompany().toLowerCase().contains(text) ||
-                        car.getModel_year().toLowerCase().contains(text) ||
-                        car.getColor().toLowerCase().contains(text)) {
-                    carList.add(car);
-                }
-            }
-        }
 
-    }
+
 }

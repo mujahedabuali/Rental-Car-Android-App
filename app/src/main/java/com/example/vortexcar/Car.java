@@ -14,6 +14,10 @@ public class Car {
     private String status;
     private String image;
 
+
+    public Car() {
+
+    }
     public Car(int id, String company, String model_year, int mileage, int seats_number, int monthlyPrice, int dailyPrice, int price, String color, String status, String image) {
         this.id = id;
         this.company = company;
