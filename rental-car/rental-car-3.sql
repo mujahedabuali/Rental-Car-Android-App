@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2024 at 01:03 PM
+-- Generation Time: Jun 08, 2024 at 09:57 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,7 +42,12 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`ID`, `name`, `Type`, `Phone`, `password`, `email`, `gender`) VALUES
-(1, 'mujahed', 'user', '1234', '123', 'mujahed', 'male');
+(1, 'mujahed', 'user', '1234', '12', 'mujahed', 'male'),
+(12, 'm a', 'user', 'ma', '123', '1', 'Male'),
+(32, 'issa', 'user', '32', '123', 'issa', 'male'),
+(123, 'Ahmed', 'admin', '123456', '123', 'ahmed', 'male'),
+(124, 'rasha mansor', 'user', 'rasha', '123', 'rasha', 'Female'),
+(125, 'taha taha1', 'user', '12345', '123', 'taha', 'Male');
 
 -- --------------------------------------------------------
 
@@ -53,9 +58,9 @@ INSERT INTO `account` (`ID`, `name`, `Type`, `Phone`, `password`, `email`, `gend
 CREATE TABLE `car` (
   `ID` int(11) NOT NULL,
   `company` varchar(50) NOT NULL,
-  `Model , year` varchar(50) NOT NULL,
+  `Model_year` varchar(50) NOT NULL,
   `Mileage` int(11) NOT NULL,
-  `Seats number` int(11) NOT NULL,
+  `SeatsNumber` int(11) NOT NULL,
   `MonthlyPrice` int(11) NOT NULL,
   `DailyPrice` int(11) NOT NULL,
   `price` int(11) NOT NULL,
@@ -68,7 +73,7 @@ CREATE TABLE `car` (
 -- Dumping data for table `car`
 --
 
-INSERT INTO `car` (`ID`, `company`, `Model , year`, `Mileage`, `Seats number`, `MonthlyPrice`, `DailyPrice`, `price`, `color`, `status`, `image`) VALUES
+INSERT INTO `car` (`ID`, `company`, `Model_year`, `Mileage`, `SeatsNumber`, `MonthlyPrice`, `DailyPrice`, `price`, `color`, `status`, `image`) VALUES
 (1, 'Chevrolet', 'Spark 2021', 1000, 4, 1200, 10000, 13000, 'red', 'Free', 'rental-car/images/chev.jpg'),
 (2, 'Seat', 'Leon 2021', 40000, 4, 2000, 300, 160000, 'black', 'Free', 'rental-car/images/seat.jpg'),
 (3, 'Swift', 'q1 2022', 20000, 3, 3000, 350, 30000, 'blue', 'Free', 'rental-car/images/swift.jpg'),
@@ -122,7 +127,7 @@ ALTER TABLE `rent`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `car`
