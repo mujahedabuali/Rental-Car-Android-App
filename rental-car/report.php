@@ -46,7 +46,7 @@ try {
     LIMIT 5
 ");
 $topCar = $stmt->fetchAll(PDO::FETCH_ASSOC);  
-    $results['TopCar'] = $topCar ? $topCar : array(["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0],["Company" => null, "model"=>null, "RentCount" => 0]);
+    $results['TopCar'] = $topCar ? $topCar : array(["Company" => null, "model"=>null, "RentCount" => 0] );
 
     echo json_encode($results);
 
