@@ -1,5 +1,6 @@
 package com.example.vortexcar;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,6 +10,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -16,10 +19,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.android.volley.RequestQueue;
+
+import java.util.ArrayList;
 
 public class dashboard extends AppCompatActivity {
 
@@ -27,10 +33,12 @@ public class dashboard extends AppCompatActivity {
     private TextView totalCars, totalCarsNotRent, totalCarsRentNow;
     private TextView totalRevenue;
     private TextView totalCustomers, newCustomers, customersRentOneCar;
-    private TextView topCar;
     private RequestQueue queue;
+    private ListView lstTopCar;
 
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +50,8 @@ public class dashboard extends AppCompatActivity {
         totalCustomers = findViewById(R.id.totalCustomers);
         newCustomers = findViewById(R.id.newCustomers);
         customersRentOneCar = findViewById(R.id.customersRentOneCar);
-        topCar = findViewById(R.id.topCar);
+        lstTopCar = findViewById(R.id.topcar);
+
 
         setDashboardData();
     }
@@ -66,7 +75,23 @@ public class dashboard extends AppCompatActivity {
                             totalCustomers.setText("Total Customers: "+obj.getString("TotalCustomers"));
                             newCustomers.setText("New Customers: "+obj.getString("NewCustomers"));
                             customersRentOneCar.setText("Customers rent at least one car: "+obj.getString("CustomersRentedOneCar"));
-                            topCar.setText("Top Car: Toyota Camry");
+
+
+                            JSONArray tops = obj.getJSONArray("TopCar");
+
+                            ArrayList<String> allcars = new ArrayList<>();
+                                    for (int i = 0; i < 20; i++) {
+                                        try {
+                                            JSONObject car = tops.getJSONObject(i);
+                                            allcars.add(car.getString("Company") +" , "+ car.getString("model") +" , rent count : "+car.getString("RentCount"));
+                                        }catch(JSONException exception){
+                                            Log.d("volley_error", exception.toString());
+                                        }
+                                    }
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(dashboard.this,
+                                            android.R.layout.simple_list_item_1, allcars);
+                                    lstTopCar.setAdapter(adapter);
+
                         } catch (JSONException ep) {
                             Log.e("err", "onResponse: ", ep);
                         }
@@ -80,7 +105,6 @@ public class dashboard extends AppCompatActivity {
                 }
         );
 
-        // Add the request to the RequestQueue
         queue.add(jsonObjectRequest);
 
     }

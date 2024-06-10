@@ -55,7 +55,7 @@ public class edit_car  extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getIntExtra("id",1);
 
-        String url = "http://10.0.2.2/rental-car/car/car.php?id="+id;
+        String url = vars.BASE_URL+"/rental-car/car/car.php?id="+id;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -121,7 +121,7 @@ public class edit_car  extends AppCompatActivity {
             return;
         }
 
-        String url = "http://10.0.2.2/rental-car/car/edit.php";
+        String url = vars.BASE_URL+"/rental-car/car/edit.php";
         RequestQueue queue = Volley.newRequestQueue(edit_car.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

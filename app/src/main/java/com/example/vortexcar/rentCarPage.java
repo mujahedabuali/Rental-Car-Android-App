@@ -2,6 +2,7 @@ package com.example.vortexcar;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,25 +30,26 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class admin_home extends AppCompatActivity {
+public class rentCarPage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Car> carList = new ArrayList<>();;
-    private carAdapterForAdmin carAdapterForAdmin;
-    private static  final String BASE_URL =vars.BASE_URL+"/rental-car/getAllCars.php";
+    private renrCarAdapter renrCarAdapter;
+    private static  final String BASE_URL =vars.BASE_URL+"/rental-car/getAllRentCar.php";
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_admin_home);
+        setContentView(R.layout.activity_rent_car_page);
 
         recyclerView = findViewById(R.id.view1);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        carAdapterForAdmin = new carAdapterForAdmin(carList, this);
-        recyclerView.setAdapter(carAdapterForAdmin);
+        renrCarAdapter = new renrCarAdapter(carList, this);
+        recyclerView.setAdapter(renrCarAdapter);
         loadItems();
     }
 
@@ -81,23 +83,23 @@ public class admin_home extends AppCompatActivity {
                                 carList.add(car);
                             }
                         }catch (Exception e){
-                            Toast.makeText(admin_home.this, e.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(rentCarPage.this, e.toString(),Toast.LENGTH_LONG).show();
                         }
 
 
-                        carAdapterForAdmin adapter = new carAdapterForAdmin( carList,admin_home.this);
+                        renrCarAdapter adapter = new renrCarAdapter( carList,rentCarPage.this);
                         recyclerView.setAdapter(adapter);
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(admin_home.this, error.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(rentCarPage.this, error.toString(),Toast.LENGTH_LONG).show();
 
             }
         });
 
-        Volley.newRequestQueue(admin_home.this).add(stringRequest);
+        Volley.newRequestQueue(rentCarPage.this).add(stringRequest);
 
     }
 
