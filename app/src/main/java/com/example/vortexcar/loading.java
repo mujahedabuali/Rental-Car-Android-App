@@ -19,10 +19,9 @@ public class loading extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Intent to start the new activity
                 Intent intent = new Intent(loading.this, IntroActivity.class);
                 startActivity(intent);
-                finish(); // Finish the current activity
+                finish();
             }
         }, 1000);
     }

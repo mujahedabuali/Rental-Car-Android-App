@@ -39,7 +39,6 @@ public class MyBookings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_my_bookings);
-        FirebaseApp.initializeApp(this);
 
         recyclerView = findViewById(R.id.view1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

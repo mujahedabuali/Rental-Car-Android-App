@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.app.DatePickerDialog;
+import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,42 +29,47 @@ public class CarInfo extends AppCompatActivity {
     private EditText dailypriceEDT;
     private EditText monthlypriceEDT;
     private EditText mileageEDT;
+    private EditText yearEDT;
     private ImageView imageView;
     private Button daybtn;
     private Button monthbtn;
     private String dueDate ="";
+    String id ;
 
     private double dailyPrice;
     private double monthlyPrice;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_info);
 
-//        dueDateEditText = findViewById(R.id.dueDateEditText);
-//        daybtn = findViewById(R.id.daybutton);
-//        monthbtn = findViewById(R.id.monthbutton);
-//
-//        carnameEDT = findViewById(R.id.textView);
-//        carmodelEDT = findViewById(R.id.modeledittext);
-//        mileageEDT = findViewById(R.id.mileageedittext);
-//        dailypriceEDT = findViewById(R.id.priceperdayedittext);
-//        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
-//        imageView = findViewById(R.id.carimage);
-//        Intent intent = getIntent();
-//        render(intent);
-//
-//
-//
-//        Button dueDateButton = findViewById(R.id.dueDateButton);
+        dueDateEditText = findViewById(R.id.dueDateEditText);
+        daybtn = findViewById(R.id.daybutton);
+        monthbtn = findViewById(R.id.monthbutton);
 
-//        dueDateButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDatePickerDialog();
-//            }
-//        });
+        carnameEDT = findViewById(R.id.textView);
+
+        carmodelEDT = findViewById(R.id.modeledittext);
+        mileageEDT = findViewById(R.id.mileageedittext);
+        yearEDT = findViewById(R.id.yearedittext);
+        dailypriceEDT = findViewById(R.id.priceperdayedittext);
+        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
+        imageView = findViewById(R.id.carimage);
+        Intent intent = getIntent();
+        render(intent);
+
+
+
+        Button dueDateButton = findViewById(R.id.dueDateButton);
+
+        dueDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
         dueDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +97,7 @@ public class CarInfo extends AppCompatActivity {
                 intent.putExtra("rate",dailyPrice);
                 intent.putExtra("daysNumber",days);
                 intent.putExtra("total",days*dailyPrice);
+                intent.putExtra("id",id);
                 this.startActivity(intent);
             }
             else {
@@ -100,25 +109,39 @@ public class CarInfo extends AppCompatActivity {
                 intent.putExtra("rate",monthlyPrice);
                 intent.putExtra("daysNumber",days);
                 intent.putExtra("total",days*monthlyPrice);
+                intent.putExtra("id",id);
                 this.startActivity(intent);
             }
+        }
+        else {
+            Toast.makeText(CarInfo.this, "Booking failed: select a date", Toast.LENGTH_LONG).show();
         }
 
     }
 
     private void render(Intent intent) {
         String carName = intent.getStringExtra("carName");
-        String model = intent.getStringExtra("carModel");
+        String year = intent.getStringExtra("carModel");// year
+        String color = intent.getStringExtra("carColor");
         String mileage = intent.getStringExtra("mileage");
         String dailyPrice = intent.getStringExtra("dailyPrice");
         String monthlyPrice = intent.getStringExtra("monthlyPrice");
         String url = intent.getStringExtra("imageUrl");
+        id = intent.getStringExtra("id");
 
-        this.dailyPrice = Double.parseDouble(dailyPrice);
-        this.monthlyPrice = Double.parseDouble(monthlyPrice);
+        try {
+            this.dailyPrice = Double.parseDouble(dailyPrice);
+            this.monthlyPrice = Double.parseDouble(monthlyPrice);
+        }
+        catch (Exception ex){
+            this.dailyPrice = 100;
+            this.monthlyPrice = 2000;
+        }
+
 
         carnameEDT.setText(carName);
-        carmodelEDT.setText(model);
+        yearEDT.setText(year);
+        carmodelEDT.setText(color);
         mileageEDT.setText(mileage+" KM");
         Log.d("mileage is"," traa"+mileage);
         dailypriceEDT.setText(String.valueOf(dailyPrice)+" $");
@@ -137,15 +160,20 @@ public class CarInfo extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 CarInfo.this,
                 (view, year1, month1, dayOfMonth) -> {
-
-                    dueDate = dayOfMonth + "/" +(month1 + 1 <10? "0"+ (month1+1) : (month1+1)) + "/" + year1;
+                    dueDate = dayOfMonth + "/" + (month1 + 1 < 10 ? "0" + (month1 + 1) : (month1 + 1)) + "/" + year1;
                     dueDateEditText.setText(dueDate);
                 },
                 year, month, day
         );
+
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        datePicker.setMinDate(calendar.getTimeInMillis());
+
         datePickerDialog.show();
     }
     private static double getDays(String date){

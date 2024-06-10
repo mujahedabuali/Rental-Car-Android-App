@@ -3,12 +3,11 @@ package com.example.vortexcar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import com.android.volley.RequestQueue;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +28,7 @@ public class loginActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passwordEditText;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,13 @@ public class loginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
+
+        queue = Volley.newRequestQueue(this);
+
+        if (savedInstanceState != null) {
+            emailEditText.setText(savedInstanceState.getString("email"));
+            passwordEditText.setText(savedInstanceState.getString("password"));
+        }
     }
 
     public void registerNow(View view) {
@@ -70,7 +77,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void browseAsVisitor(View view) {
-        Intent intent = new Intent(this, homePage.class);
+        Intent intent = new Intent(this, homePage_visitor.class);
         startActivity(intent);
     }
 
@@ -80,10 +87,10 @@ public class loginActivity extends AppCompatActivity {
     }
 
     private void togglePasswordVisibility() {
-        if (passwordEditText.getInputType() == (android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        if (passwordEditText.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
         } else {
-            passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
         passwordEditText.setSelection(passwordEditText.length());
     }
@@ -103,7 +110,6 @@ public class loginActivity extends AppCompatActivity {
     private void loginUser(final String email, final String password) {
         String url = "http://10.0.2.2/rental-car/login.php";
 
-        RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -120,12 +126,10 @@ public class loginActivity extends AppCompatActivity {
                                 String gender = jsonObject.optString("gender", "");
                                 String phone = jsonObject.optString("phone", "");
 
-                                // Split the full name into first name and last name
                                 String[] nameParts = name.split(" ", 2);
                                 String firstName = nameParts.length > 0 ? nameParts[0] : "";
                                 String lastName = nameParts.length > 1 ? nameParts[1] : "";
 
-                                // Save user data to SharedPreferences
                                 saveUserData(email, firstName, lastName, gender, phone);
 
                                 if (accountType.equals("user")) {
@@ -177,6 +181,12 @@ public class loginActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("email", emailEditText.getText().toString().trim());
+        outState.putString("password", passwordEditText.getText().toString().trim());
+    }
 
     @Override
     protected void onPause() {
@@ -194,7 +204,6 @@ public class loginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Exit the app
         super.onBackPressed();
         finishAffinity();
     }
