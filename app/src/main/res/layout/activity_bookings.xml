@@ -282,7 +282,8 @@
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="15dp"
                                     android:text="$00/Day"
-                                     />
+                                    android:textColor="@color/white"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -304,7 +305,8 @@
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="15dp"
                                     android:text="0 Days"
-                                     />
+                                    android:textColor="@color/white"
+                                    />
                             </LinearLayout>
 
 
@@ -326,8 +328,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="15dp"
+                                    android:textColor="@color/white"
                                     android:text="00:00PM\t\tSUN, JAN 05"
-                                     />
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -348,8 +351,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="15dp"
+                                    android:textColor="@color/white"
                                     android:text="03:00PM\t\tMON, JAN 17"
-                                     />
+                                    />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -484,7 +488,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:text="$000"
-                                        android:textColor="@color/cardview_dark_background"
+                                        android:textColor="@color/white"
                                         android:textSize="24sp" />
                                 </LinearLayout>
 
@@ -497,16 +501,17 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/returnCar"
+                    android:id="@+id/confirm"
                     style="@android:style/Widget.Button"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="40dp"
                     android:background="@drawable/intro_btn_background"
                     android:gravity="center"
-                    android:text="return Car"
+                    android:text=" Confirm"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="22dp"
+                    android:textSize="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/personalInfoText"
                     app:layout_constraintStart_toStartOf="@+id/personalInfoText"
