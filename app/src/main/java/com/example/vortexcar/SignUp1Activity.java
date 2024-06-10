@@ -1,6 +1,7 @@
 package com.example.vortexcar;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,9 +11,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class SignUp1Activity extends AppCompatActivity {
     EditText lastNameEditText;
@@ -25,9 +23,9 @@ public class SignUp1Activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up1);
 
-         firstNameEditText = findViewById(R.id.firstNameEditText);
-         lastNameEditText = findViewById(R.id.lastNameEditText);
-         genderSpinner = findViewById(R.id.genderSpinner);
+        firstNameEditText = findViewById(R.id.firstNameEditText);
+        lastNameEditText = findViewById(R.id.lastNameEditText);
+        genderSpinner = findViewById(R.id.genderSpinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_array, R.layout.spinner_item);
@@ -35,10 +33,29 @@ public class SignUp1Activity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(adapter);
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save relevant data to the bundle here
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore saved state from the bundle here
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Handle configuration changes here, such as adjusting layout
+    }
+
     public void login(View view) {
         Intent intent = new Intent(this, loginActivity.class);
         startActivity(intent);
     }
+
     public void signup2(View view) {
         String selectedItem = genderSpinner.getSelectedItem().toString();
         String firstName = firstNameEditText.getText().toString();
@@ -64,7 +81,5 @@ public class SignUp1Activity extends AppCompatActivity {
         intent.putExtra("lastName", lastName);
         intent.putExtra("gender", selectedItem);
         startActivity(intent);
-
     }
-
 }
