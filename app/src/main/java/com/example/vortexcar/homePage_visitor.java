@@ -1,16 +1,7 @@
 package com.example.vortexcar;
 
-import static android.content.ContentValues.TAG;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.common.reflect.TypeToken;
-import com.google.firebase.FirebaseApp;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,20 +16,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class homePage extends AppCompatActivity {
+public class homePage_visitor extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Car> carList = new ArrayList<>();
-    private carAdapter carAdapter;
+    private carAdapter_visitor carAdapter;
     private RequestQueue queue;
 
     BottomNavigationView bottomNavigationView;
@@ -56,7 +47,7 @@ public class homePage extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        carAdapter = new carAdapter(carList, this);
+        carAdapter = new carAdapter_visitor(carList, this);
         recyclerView.setAdapter(carAdapter);
 
         queue = Volley.newRequestQueue(this);
@@ -72,13 +63,13 @@ public class homePage extends AppCompatActivity {
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
         int itemId = item.getItemId();
         if (itemId == R.id.navigation_home) {
-            startActivity(new Intent(homePage.this, homePage.class));
+            startActivity(new Intent(homePage_visitor.this, homePage_visitor.class));
             return true;
         } else if (itemId == R.id.navigation_cart) {
-            startActivity(new Intent(homePage.this, MyBookings.class));
+            startActivity(new Intent(homePage_visitor.this, loginActivity.class));
             return true;
         } else if (itemId == R.id.navigation_profile) {
-            startActivity(new Intent(homePage.this, Profile.class));
+            startActivity(new Intent(homePage_visitor.this, loginActivity.class));
             return true;
         }
         return false;
@@ -125,7 +116,7 @@ public class homePage extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(homePage.this, e.toString(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(homePage_visitor.this, e.toString(), Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
@@ -136,7 +127,7 @@ public class homePage extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(homePage.this, error.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(homePage_visitor.this, error.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -145,6 +136,28 @@ public class homePage extends AppCompatActivity {
                 queue.add(stringRequest);
             }
         }).start();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("carList", (ArrayList<Car>) carList);
+    }
+
+
+    public void myfavs(View view) {
+        Intent intent = new Intent(this, MyFavourites.class);
+        startActivity(intent);
+    }
+
+    public void mybookings(View view) {
+        Intent intent = new Intent(this, MyBookings.class);
+        startActivity(intent);
+    }
+
+    public void myprofile(View view) {
+        Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
     }
 
     @Override

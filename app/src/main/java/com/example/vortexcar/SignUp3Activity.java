@@ -1,6 +1,7 @@
 package com.example.vortexcar;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,9 +10,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,7 +29,6 @@ public class SignUp3Activity extends AppCompatActivity {
     private EditText ConfirmpasswordEditText;
     private static final String REGISTER_URL = "http://10.0.2.2/rental-car/register.php";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +45,29 @@ public class SignUp3Activity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save relevant data to the bundle here
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore saved state from the bundle here
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Handle configuration changes here, such as adjusting layout
+    }
 
     public void signup2(View view) {
         Intent intent = new Intent(this, SignUp2Activity.class);
         startActivity(intent);
     }
+
     public void signup(View view) {
         Intent intent1 = getIntent();
         String firstName = intent1.getStringExtra("firstName");
@@ -78,7 +92,6 @@ public class SignUp3Activity extends AppCompatActivity {
             Toast.makeText(SignUp3Activity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
                 new Response.Listener<String>() {
@@ -111,7 +124,7 @@ public class SignUp3Activity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("name", firstName +" "+ lastName);
+                params.put("name", firstName + " " + lastName);
                 params.put("type", "user");
                 params.put("phone", phone);
                 params.put("password", pas2);
@@ -123,6 +136,7 @@ public class SignUp3Activity extends AppCompatActivity {
 
         Volley.newRequestQueue(SignUp3Activity.this).add(stringRequest);
     }
+
     private void togglePasswordVisibility() {
         if (passwordEditText.getInputType() == (android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
             passwordEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
@@ -143,5 +157,4 @@ public class SignUp3Activity extends AppCompatActivity {
         Intent intent = new Intent(this, SignUp4Activity.class);
         startActivity(intent);
     }
-
 }

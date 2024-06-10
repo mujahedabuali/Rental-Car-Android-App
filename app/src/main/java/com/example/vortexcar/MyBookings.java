@@ -30,7 +30,7 @@ import java.util.Map;
 public class MyBookings extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<Car> rentedCars = new ArrayList<>();
+    private List<RentedCar> rentedCars = new ArrayList<>();
     ;
     private carAdapter_Booking carAdapter;
 
@@ -39,11 +39,9 @@ public class MyBookings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_my_bookings);
-        FirebaseApp.initializeApp(this);
 
         recyclerView = findViewById(R.id.view1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
         loadItems();
     }
@@ -131,7 +129,12 @@ public class MyBookings extends AppCompatActivity {
                                     car.setImage("http://10.0.2.2/"+carObject.getString("image"));
                                     car.setPrice(carObject.getInt("TotalPrice"));
                                     car.setStatus(carObject.getString("status"));
-                                    rentedCars.add(car);
+
+                                    String startDate = carObject.getString("startDate");
+                                    String endDate = carObject.getString("endDate");
+
+                                    RentedCar rentedCar = new RentedCar(car, startDate, endDate);
+                                    rentedCars.add(rentedCar);
                                 }
 
 
