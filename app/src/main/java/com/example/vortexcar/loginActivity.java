@@ -39,12 +39,12 @@ public class loginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.TextView111);
         ImageView passwordToggle = findViewById(R.id.imageView15);
 
-        passwordToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                togglePasswordVisibility();
-            }
-        });
+//        passwordToggle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                togglePasswordVisibility();
+//            }
+//        });
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,14 +86,14 @@ public class loginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void togglePasswordVisibility() {
-        if (passwordEditText.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        } else {
-            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        }
-        passwordEditText.setSelection(passwordEditText.length());
-    }
+//    private void togglePasswordVisibility() {
+//        if (passwordEditText.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+//            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+//        } else {
+//            passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//        }
+//        passwordEditText.setSelection(passwordEditText.length());
+//    }
 
     private void attemptLogin() {
         String email = emailEditText.getText().toString().trim();
