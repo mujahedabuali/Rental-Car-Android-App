@@ -37,31 +37,31 @@ public class CarInfo_Booking extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_info);
+        setContentView(R.layout.activity_car_info_booking);
 
-//        dueDateEditText = findViewById(R.id.dueDateEditText);
-//        daybtn = findViewById(R.id.daybutton);
-//        monthbtn = findViewById(R.id.monthbutton);
-//
-//        carnameEDT = findViewById(R.id.textView);
-//        carmodelEDT = findViewById(R.id.modeledittext);
-//        mileageEDT = findViewById(R.id.mileageedittext);
-//        dailypriceEDT = findViewById(R.id.priceperdayedittext);
-//        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
-//        imageView = findViewById(R.id.carimage);
-//        Intent intent = getIntent();
-//        render(intent);
-//
-//
-//
-//        Button dueDateButton = findViewById(R.id.dueDateButton);
-//
-//        dueDateButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDatePickerDialog();
-//            }
-//        });
+        dueDateEditText = findViewById(R.id.dueDateEditText);
+        daybtn = findViewById(R.id.daybutton);
+        monthbtn = findViewById(R.id.monthbutton);
+
+        carnameEDT = findViewById(R.id.textView);
+        carmodelEDT = findViewById(R.id.modeledittext);
+        mileageEDT = findViewById(R.id.mileageedittext);
+        dailypriceEDT = findViewById(R.id.priceperdayedittext);
+        monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
+        imageView = findViewById(R.id.carimage);
+        Intent intent = getIntent();
+        render(intent);
+
+
+
+        Button dueDateButton = findViewById(R.id.dueDateButton);
+
+        dueDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
         dueDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
