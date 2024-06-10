@@ -116,7 +116,7 @@ public class Profile extends AppCompatActivity {
         View editButton = findViewById(R.id.editButton);
 
         if (saveButton != null) {
-            saveButton.setVisibility(View.VISIBLE);
+            saveButton.setVisibility(View.VISIBLE); // Change visibility to VISIBLE
         } else {
             Toast.makeText(this, "Save button not found", Toast.LENGTH_SHORT).show();
         }
@@ -127,6 +127,7 @@ public class Profile extends AppCompatActivity {
             Toast.makeText(this, "Edit button not found", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     public void saveChanges(View view) {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);

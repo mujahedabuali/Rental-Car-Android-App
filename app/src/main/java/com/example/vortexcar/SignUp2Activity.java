@@ -1,6 +1,7 @@
 package com.example.vortexcar;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -8,14 +9,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class SignUp2Activity extends AppCompatActivity {
 
     private TextView phoneEditText;
     private TextView emailEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +23,29 @@ public class SignUp2Activity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.phoneNumberEditText);
         emailEditText = findViewById(R.id.emailEditText);
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save relevant data to the bundle here
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore saved state from the bundle here
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Handle configuration changes here, such as adjusting layout
+    }
 
     public void signup1(View view) {
         Intent intent = new Intent(this, SignUp1Activity.class);
         startActivity(intent);
     }
+
     public void signup3(View view) {
         Intent intent1 = getIntent();
         String firstName = intent1.getStringExtra("firstName");
@@ -56,5 +73,4 @@ public class SignUp2Activity extends AppCompatActivity {
         intent.putExtra("email", email);
         startActivity(intent);
     }
-
 }

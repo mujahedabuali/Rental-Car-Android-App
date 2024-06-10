@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/graient_color_background"
@@ -14,11 +15,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:text="General"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            android:paddingBottom="8dp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -64,11 +65,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:text="Financial"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            android:paddingBottom="8dp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -97,11 +98,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:text="Customer"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            android:paddingBottom="8dp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -148,11 +149,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:text="Top Car"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            android:paddingBottom="8dp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -163,16 +164,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:orientation="vertical"
-                android:padding="16dp">
+                tools:context=".MainActivity">
 
-                <TextView
-                    android:id="@+id/topCar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Top Car: N/A"
-                    android:textSize="16sp" />
+                <ListView
+                    android:id="@+id/topcar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
