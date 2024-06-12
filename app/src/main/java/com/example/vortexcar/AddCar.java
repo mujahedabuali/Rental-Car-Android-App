@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 public class AddCar extends AppCompatActivity {
-    private EditText companyEditText, seatsEditText, priceEditText, dailyPriceEditText, monthlyPriceEditText, mileageEditText, colorEditText, modelEditText, yearEditText, imageURLEditText;
+    private EditText companyEditText, seatsEditText,  dailyPriceEditText, monthlyPriceEditText, mileageEditText, colorEditText, modelEditText, imageURLEditText;
     private AppCompatButton saveButton, resetButton;
 
     @Override
@@ -38,13 +38,11 @@ public class AddCar extends AppCompatActivity {
 
         companyEditText = findViewById(R.id.company);
         seatsEditText = findViewById(R.id.seats);
-        priceEditText = findViewById(R.id.price);
         dailyPriceEditText = findViewById(R.id.Dailyprice);
         monthlyPriceEditText = findViewById(R.id.Monthlyprice);
         mileageEditText = findViewById(R.id.mileage);
         colorEditText = findViewById(R.id.color);
         modelEditText = findViewById(R.id.model);
-        yearEditText = findViewById(R.id.year);
         imageURLEditText = findViewById(R.id.imageURL);
 
         saveButton = findViewById(R.id.add);
@@ -67,21 +65,43 @@ public class AddCar extends AppCompatActivity {
             }
         });
 
+        if (savedInstanceState != null) {
+            companyEditText.setText(savedInstanceState.getString("company"));
+            seatsEditText.setText(savedInstanceState.getString("seats"));
+            dailyPriceEditText.setText(savedInstanceState.getString("dailyPrice"));
+            monthlyPriceEditText.setText(savedInstanceState.getString("monthlyPrice"));
+            mileageEditText.setText(savedInstanceState.getString("mileage"));
+            colorEditText.setText(savedInstanceState.getString("color"));
+            modelEditText.setText(savedInstanceState.getString("model"));
+            imageURLEditText.setText(savedInstanceState.getString("imageURL"));
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("company", companyEditText.getText().toString());
+        outState.putString("seats", seatsEditText.getText().toString());
+        outState.putString("dailyPrice", dailyPriceEditText.getText().toString());
+        outState.putString("monthlyPrice", monthlyPriceEditText.getText().toString());
+        outState.putString("mileage", mileageEditText.getText().toString());
+        outState.putString("color", colorEditText.getText().toString());
+        outState.putString("model", modelEditText.getText().toString());
+        outState.putString("imageURL", imageURLEditText.getText().toString());
     }
 
     private void saveCar() {
         String company = companyEditText.getText().toString().trim();
         String seats = seatsEditText.getText().toString().trim();
-        String price = priceEditText.getText().toString().trim();
         String dailyPrice = dailyPriceEditText.getText().toString().trim();
         String monthlyPrice = monthlyPriceEditText.getText().toString().trim();
         String mileage = mileageEditText.getText().toString().trim();
         String color = colorEditText.getText().toString().trim();
         String model = modelEditText.getText().toString().trim();
-        String year = yearEditText.getText().toString().trim();
         String imageURL = imageURLEditText.getText().toString().trim();
 
-        if (company.isEmpty() || seats.isEmpty() || price.isEmpty() || dailyPrice.isEmpty() || monthlyPrice.isEmpty() || mileage.isEmpty() || color.isEmpty() || model.isEmpty() || year.isEmpty() || imageURL.isEmpty()) {
+        if (company.isEmpty() || seats.isEmpty()  || dailyPrice.isEmpty() || monthlyPrice.isEmpty() || mileage.isEmpty() || color.isEmpty() || model.isEmpty()  || imageURL.isEmpty()) {
             Toast.makeText(AddCar.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -118,8 +138,7 @@ public class AddCar extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("company", company);
                 params.put("SeatsNumber", seats);
-                params.put("price", price);
-                params.put("model_year", year);
+                params.put("model_year", model);
                 params.put("MonthlyPrice", monthlyPrice);
                 params.put("Mileage", mileage);
                 params.put("DailyPrice", dailyPrice);
@@ -137,13 +156,11 @@ public class AddCar extends AppCompatActivity {
     private void resetFields() {
         companyEditText.setText("");
         seatsEditText.setText("");
-        priceEditText.setText("");
         dailyPriceEditText.setText("");
         monthlyPriceEditText.setText("");
         mileageEditText.setText("");
         colorEditText.setText("");
         modelEditText.setText("");
-        yearEditText.setText("");
         imageURLEditText.setText("");
     }
 }

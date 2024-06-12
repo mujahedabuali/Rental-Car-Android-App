@@ -23,10 +23,9 @@ public class theRentCarInfo extends AppCompatActivity {
     private TextView carInfoEDT;
     private TextView phoneNumberEDT , emailEDT ,nameEDT;
     private TextView dropoffEDT , pickupEDT;
-    private TextView rateEDT;
+    private TextView bookingID;
     private TextView daysNumberEDT;
     private TextView totalEDT;
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +40,7 @@ public class theRentCarInfo extends AppCompatActivity {
         phoneNumberEDT = findViewById(R.id.phoneNumber);
         nameEDT = findViewById(R.id.nameedt);
         emailEDT = findViewById(R.id.emailedt);
+        bookingID = findViewById(R.id.bookingID);
 
         // Retrieve data from the intent
         Intent intent = getIntent();
@@ -65,19 +65,22 @@ public class theRentCarInfo extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response);
 
-//                                int TotalPrice = object.getInt("TotalPrice");
+                                int TotalPrice = object.getInt("TotalPrice");
                                 String startDate = object.getString("startDate");
                                 String endDate = object.getString("endDate");
                                 String phone = object.getString("Phone");
                                 String name = object.getString("name");
                                 String email = object.getString("email");
-                                pickupEDT.setText(startDate);
+                                String totalDays = object.getString("totalDays");
+
+                            pickupEDT.setText(startDate);
                                 dropoffEDT.setText(endDate);
-                                daysNumberEDT.setText("20");
-                                totalEDT.setText(00);
+                                daysNumberEDT.setText(totalDays+" Days");
+                                totalEDT.setText(TotalPrice+" $");
                                 nameEDT.setText(name);
                                 phoneNumberEDT.setText(phone);
                                 emailEDT.setText(email);
+                                bookingID.setText("Rent ID : "+object.getString("rentID"));
 
 
                         }catch (Exception e){
