@@ -12,4 +12,13 @@
         android:id="@+id/navigation_cart"
         android:icon="@drawable/float_icon"
         android:title="My Cart" />
+    <item
+        android:id="@+id/navigation_fav"
+        android:icon="@drawable/fav"
+        android:title="Favorite" />
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/microphone"
+        android:title="Contact Us" />
+
 </menu>

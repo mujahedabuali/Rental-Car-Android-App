@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/graient_color_background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        android:textSize="23dp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
+            android:hint="Type a message" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.Button"
+            android:background="@drawable/intro_btn_background"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:text="Send" />
+    </LinearLayout>
+
+
+</LinearLayout>

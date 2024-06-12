@@ -80,6 +80,9 @@ public class homePage extends AppCompatActivity {
         } else if (itemId == R.id.navigation_profile) {
             startActivity(new Intent(homePage.this, Profile.class));
             return true;
+        } else if (itemId == R.id.navigation_chat) {
+            startActivity(new Intent(homePage.this, contacUs.class));
+            return true;
         }
         return false;
     };
