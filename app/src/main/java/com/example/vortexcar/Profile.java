@@ -8,7 +8,10 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -35,6 +38,8 @@ public class Profile extends AppCompatActivity {
     EditText passwordEditText;
     CheckBox showPasswordCheckBox;
     Button logoutButton;
+    Switch backgroundSwitch;
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,18 @@ public class Profile extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         showPasswordCheckBox = findViewById(R.id.showPasswordCheckBox);
         logoutButton = findViewById(R.id.logoutButton);
+        backgroundSwitch = findViewById(R.id.backgroundSwitch);
+        scrollView = findViewById(R.id.scrollView);
+
+        updateBackground();
+
+        backgroundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateBackground();
+            }
+        });
+
 
 
         // Retrieve user data from SharedPreferences
@@ -78,6 +95,14 @@ public class Profile extends AppCompatActivity {
                 togglePasswordVisibility(v);
             }
         });
+    }
+
+    private void updateBackground() {
+        if (backgroundSwitch.isChecked()) {
+            scrollView.setBackgroundResource(R.drawable.graient_color_background);
+        } else {
+            scrollView.setBackgroundResource(R.drawable.graient_color_background_white);
+        }
     }
 
     public void gotomain(View view) {
