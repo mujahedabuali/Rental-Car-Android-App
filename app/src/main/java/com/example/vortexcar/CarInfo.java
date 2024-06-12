@@ -102,15 +102,21 @@ public class CarInfo extends AppCompatActivity {
             }
             else {
                 double days = getDays(dueDate);
-                Intent intent = new Intent(this, Bookings.class);
-                intent.putExtra("carInfo", String.valueOf(carnameEDT.getText())+" "+carmodelEDT.getText());
-                intent.putExtra("carModel",carmodelEDT.getText()+"");
-                intent.putExtra("dropoff",dueDate);
-                intent.putExtra("rate",monthlyPrice);
-                intent.putExtra("daysNumber",days);
-                intent.putExtra("total",days*monthlyPrice);
-                intent.putExtra("id",id);
-                this.startActivity(intent);
+                if (days>= 30.0){
+                    Intent intent = new Intent(this, Bookings.class);
+                    intent.putExtra("carInfo", String.valueOf(carnameEDT.getText())+" "+carmodelEDT.getText());
+                    intent.putExtra("carModel",carmodelEDT.getText()+"");
+                    intent.putExtra("dropoff",dueDate);
+                    intent.putExtra("rate",monthlyPrice);
+                    intent.putExtra("daysNumber",days);
+                    intent.putExtra("total",Math.floor(days*monthlyPrice/30));
+                    intent.putExtra("id",id);
+                    intent.putExtra("isMonthly",true);
+                    this.startActivity(intent);
+                }
+                else {
+                    Toast.makeText(CarInfo.this, "This option only for 30+ days ", Toast.LENGTH_LONG).show();
+                }
             }
         }
         else {
@@ -165,7 +171,7 @@ public class CarInfo extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 CarInfo.this,
                 (view, year1, month1, dayOfMonth) -> {
-                    dueDate = dayOfMonth + "/" + (month1 + 1 < 10 ? "0" + (month1 + 1) : (month1 + 1)) + "/" + year1;
+                    dueDate = (dayOfMonth < 10? "0"+dayOfMonth : dayOfMonth+"") + "/" + (month1 + 1 < 10 ? "0" + (month1 + 1) : (month1 + 1)) + "/" + year1;
                     dueDateEditText.setText(dueDate);
                 },
                 year, month, day

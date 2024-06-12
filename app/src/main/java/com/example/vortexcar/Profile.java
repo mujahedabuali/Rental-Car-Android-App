@@ -59,7 +59,7 @@ public class Profile extends AppCompatActivity {
         String gender = preferences.getString("gender", "");
         String email = preferences.getString("email", "");
         String phone = preferences.getString("phone", "");
-        String password = preferences.getString("password", ""); // Retrieve password
+        String password = preferences.getString("password", "");  // Retrieve password
 
         // Display data in the EditText fields
         firstNameEditText.setText(firstName);
@@ -130,7 +130,6 @@ public class Profile extends AppCompatActivity {
 
 
     public void saveChanges(View view) {
-        // Save changes to SharedPreferences
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -183,7 +182,6 @@ public class Profile extends AppCompatActivity {
         phoneEditText.setInputType(inputType);
         passwordEditText.setInputType(isEditable ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD : InputType.TYPE_NULL);
 
-        // Re-apply the cursor position at the end of the text if the fields are editable
         if (isEditable) {
             firstNameEditText.setSelection(firstNameEditText.length());
             lastNameEditText.setSelection(lastNameEditText.length());
