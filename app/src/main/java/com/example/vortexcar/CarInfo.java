@@ -33,6 +33,9 @@ public class CarInfo extends AppCompatActivity {
     private ImageView imageView;
     private Button daybtn;
     private Button monthbtn;
+    private ImageView heartButton;
+
+    private boolean isFavorited = false;
     private String dueDate ="";
     String id ;
 
@@ -57,6 +60,8 @@ public class CarInfo extends AppCompatActivity {
         dailypriceEDT = findViewById(R.id.priceperdayedittext);
         monthlypriceEDT = findViewById(R.id.pricepermonthedittext);
         imageView = findViewById(R.id.carimage);
+        heartButton = findViewById(R.id.heartButton);
+
         Intent intent = getIntent();
         render(intent);
 
@@ -192,5 +197,14 @@ public class CarInfo extends AppCompatActivity {
             return daysBetween;
         }
         return 0;
+    }
+    public void onHeartButtonClick(View view) {
+        isFavorited = !isFavorited;
+        if (isFavorited) {
+            Toast.makeText(this, "Car added to favorites", Toast.LENGTH_SHORT).show();
+        } else {
+            heartButton.setImageResource(R.drawable.fav);
+            Toast.makeText(this, "Car removed from favorites", Toast.LENGTH_SHORT).show();
+        }
     }
 }
