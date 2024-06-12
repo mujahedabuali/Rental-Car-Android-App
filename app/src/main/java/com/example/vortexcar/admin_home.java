@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,6 +36,7 @@ public class admin_home extends AppCompatActivity {
     private List<Car> carList = new ArrayList<>();;
     private carAdapterForAdmin carAdapterForAdmin;
     private static  final String BASE_URL =vars.BASE_URL+"/rental-car/getAllCars.php";
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -48,6 +50,8 @@ public class admin_home extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         carAdapterForAdmin = new carAdapterForAdmin(carList, this);
         recyclerView.setAdapter(carAdapterForAdmin);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         loadItems();
     }
 
@@ -101,12 +105,23 @@ public class admin_home extends AppCompatActivity {
 
     }
 
-    public void addnew(View view) {
-        Intent intent = new Intent(this, AddCar.class);
-        startActivity(intent);
-    }  public void report(View view) {
-        Intent intent = new Intent(this, dashboard.class);
-        startActivity(intent);
-    }
+
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
+        int itemId = item.getItemId();
+        if (itemId == R.id.navigation_home) {
+//            startActivity(new Intent(admin_home.this, admin_home.class));
+            return true;
+        } else if (itemId == R.id.navigation_rentCar) {
+            startActivity(new Intent(admin_home.this, rentCarPage.class));
+            return true;
+        } else if (itemId == R.id.navigation_add) {
+            startActivity(new Intent(admin_home.this, AddCar.class));
+            return true;
+        }else if (itemId == R.id.navigation_report) {
+            startActivity(new Intent(admin_home.this, dashboard.class));
+            return true;
+        }
+        return false;
+    };
 
 }
