@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -241,6 +242,8 @@ public class Profile extends AppCompatActivity {
                 jsonObject.put("phone", phone);
                 jsonObject.put("password", password);
 
+                Log.d("UpdateProfileTask", "Sending JSON: " + jsonObject.toString());
+
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
                 writer.write(jsonObject.toString());
                 writer.flush();
@@ -277,3 +280,5 @@ public class Profile extends AppCompatActivity {
         }
     }
 }
+
+
