@@ -35,6 +35,7 @@ public class carInfoForAdmin extends AppCompatActivity {
     private ImageView imageView;
 
     private int id =0;
+    String status ="";
 
 
 
@@ -53,6 +54,7 @@ public class carInfoForAdmin extends AppCompatActivity {
     }
     private void render(Intent intent) {
         String carName = intent.getStringExtra("carName");
+        status = intent.getStringExtra("status");
 
         String model = intent.getStringExtra("carModel");
         int mileage = intent.getIntExtra("mileage",0);
@@ -76,8 +78,12 @@ public class carInfoForAdmin extends AppCompatActivity {
     }
 
    public void delete(View view){
-       showDeleteConfirmationDialog();
+        if(status.equals("rent")){
+            Toast.makeText(carInfoForAdmin.this, "The car is rented Now !!! \n You Cant delete it ... ", Toast.LENGTH_LONG).show();
 
+        }else {
+            showDeleteConfirmationDialog();
+        }
    }
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(carInfoForAdmin.this);
