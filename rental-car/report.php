@@ -26,10 +26,9 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) AS TotalCustomers FROM account");
     $results['TotalCustomers'] = $stmt->fetch(PDO::FETCH_ASSOC)['TotalCustomers'];
 
-    // New customers (assuming "new" means within the last 30 days)
     $stmt = $pdo->query("SELECT COUNT(*) AS NewCustomers 
                          FROM account 
-                         WHERE DATEDIFF(CURDATE(), DATE_SUB(CURDATE(), INTERVAL 100 DAY)) <= 100");
+                         WHERE DATEDIFF(CURDATE(), DATE_SUB(CURDATE(), INTERVAL 30 DAY)) <= 300");
     $results['NewCustomers'] = $stmt->fetch(PDO::FETCH_ASSOC)['NewCustomers'];
 
     $stmt = $pdo->query("SELECT COUNT(DISTINCT AccountID) AS CustomersRentedOneCar 
@@ -45,8 +44,21 @@ try {
     ORDER BY RentCount DESC
     LIMIT 5
 ");
-$topCar = $stmt->fetchAll(PDO::FETCH_ASSOC);  
+$topCar = $stmt->fetchAll();  
     $results['TopCar'] = $topCar ? $topCar : array(["Company" => null, "model"=>null, "RentCount" => 0] );
+
+
+// Top Customer (most Customer rent cars)
+    $stmt = $pdo->query("
+    SELECT  account.name AS Name , account.email AS Email, COUNT(rent.	AccountID) AS RentCount
+    FROM rent
+    JOIN account ON rent.AccountID = account.ID
+    GROUP BY rent.AccountID
+    ORDER BY RentCount DESC
+    LIMIT 5
+");
+$topCustomer = $stmt->fetchAll();  
+    $results['TopCustomer'] = $topCustomer ? $topCustomer : array(["Name" => null, "Email"=>null, "RentCount" => 0] );
 
     echo json_encode($results);
 
