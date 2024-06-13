@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconfig.in.php';
-
+require_once 'updateStatus.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt = $pdo->query('SELECT * FROM car WHERE status = "Free"');
@@ -11,4 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     header('HTTP/1.1 405 Method Not Allowed');
     echo json_encode(['error' => 'Only GET method is allowed']);
 }
+
+
 ?>
