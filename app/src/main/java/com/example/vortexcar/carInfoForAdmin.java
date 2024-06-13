@@ -78,12 +78,9 @@ public class carInfoForAdmin extends AppCompatActivity {
     }
 
    public void delete(View view){
-        if(status.equals("rent")){
-            Toast.makeText(carInfoForAdmin.this, "The car is rented Now !!! \n You Cant delete it ... ", Toast.LENGTH_LONG).show();
-
-        }else {
+    
             showDeleteConfirmationDialog();
-        }
+        
    }
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(carInfoForAdmin.this);
