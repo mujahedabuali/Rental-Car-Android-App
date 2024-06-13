@@ -19,14 +19,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RentalCar"
         tools:targetApi="31">
+
         <activity
-            android:name=".FavoritesAdapter"
+            android:name=".ChatWithAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".My_Favs"
+            android:name=".SendEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".contacUs"
+            android:exported="false" />
+        <activity
+            android:name=".homePage_visitor"
             android:exported="false" />
         <activity
             android:name=".Profile"
@@ -36,6 +40,9 @@
             android:exported="false" />
         <activity
             android:name=".MyFavourites"
+            android:exported="false" />
+        <activity
+            android:name=".My_Favs"
             android:exported="false" />
         <activity
             android:name=".MyBookings"

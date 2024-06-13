@@ -1,6 +1,8 @@
 package com.example.vortexcar;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,12 +16,23 @@ import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CarInfo extends AppCompatActivity {
 
@@ -38,6 +51,7 @@ public class CarInfo extends AppCompatActivity {
     private boolean isFavorited = false;
     private String dueDate ="";
     String id ;
+    private int userId;
 
     private double dailyPrice;
     private double monthlyPrice;
@@ -201,10 +215,106 @@ public class CarInfo extends AppCompatActivity {
     public void onHeartButtonClick(View view) {
         isFavorited = !isFavorited;
         if (isFavorited) {
-            Toast.makeText(this, "Car added to favorites", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            String email = sharedPreferences.getString("email", null);
+
+            if (email != null) {
+                getUserIdByEmail(email);
+            } else {
+                Toast.makeText(CarInfo.this, "Email not found in SharedPreferences", Toast.LENGTH_SHORT).show();
+            }
         } else {
             heartButton.setImageResource(R.drawable.fav);
             Toast.makeText(this, "Car removed from favorites", Toast.LENGTH_SHORT).show();
+            // Here you can implement the remove from favorites functionality if needed
         }
     }
+
+    private void getUserIdByEmail(String email) {
+        String URL_GET_USER_ID = "http://10.0.2.2/rental-car/getUserID.php";
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_GET_USER_ID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+
+                            if (status.equals("success")) {
+                                userId = jsonObject.getInt("user_id");
+                                addToFavorites(userId);
+                            } else {
+                                String message = jsonObject.getString("message");
+                                Toast.makeText(CarInfo.this, message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(CarInfo.this, "JSON error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(CarInfo.this, "1Volley error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
+    }
+
+    private void addToFavorites(int userId) {
+        String URL_ADD_TO_FAVORITES = "http://10.0.2.2/rental-car/add_fav.php";
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD_TO_FAVORITES,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+                            String message = jsonObject.getString("message");
+
+                            if (status.equals("success")) {
+                                heartButton.setImageResource(R.drawable.fav);
+                                Toast.makeText(CarInfo.this, "Car added to favorites: " + message, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(CarInfo.this, "Failed to add car to favorites: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(CarInfo.this, "JSON parsing error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(CarInfo.this, "2Volley error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(userId));
+                params.put("car_id", String.valueOf(id));
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
+    }
 }
+

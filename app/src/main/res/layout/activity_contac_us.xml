@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/graient_color_background"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact With Rent Car Team!"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="118dp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sendEmailButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/intro_btn_background"
+        android:gravity="center"
+        android:onClick="mainn"
+        android:text="Via Email"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/chatWithAdminButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/intro_btn_background"
+        android:gravity="center"
+        android:onClick="mainn"
+        android:text="Chating in app"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/callCenterButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/intro_btn_background"
+        android:gravity="center"
+        android:onClick="mainn"
+        android:text="Call Now!"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        />
+
+
+
+</LinearLayout>

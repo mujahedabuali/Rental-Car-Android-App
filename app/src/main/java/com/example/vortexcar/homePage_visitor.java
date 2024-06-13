@@ -50,12 +50,8 @@ public class homePage_visitor extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        if (savedInstanceState == null) {
+
             loadItems();
-        } else {
-            carList = (List<Car>) savedInstanceState.getSerializable("carList");
-            carAdapter.notifyDataSetChanged();
-        }
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
@@ -134,12 +130,6 @@ public class homePage_visitor extends AppCompatActivity {
                 queue.add(stringRequest);
             }
         }).start();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("carList", (ArrayList<Car>) carList);
     }
 
 
