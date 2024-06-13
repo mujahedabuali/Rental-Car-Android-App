@@ -31,7 +31,6 @@ public class homePage_visitor extends AppCompatActivity {
     private List<Car> carList = new ArrayList<>();
     private carAdapter_visitor carAdapter;
     private RequestQueue queue;
-
     BottomNavigationView bottomNavigationView;
     private static final String BASE_URL = "http://10.0.2.2/rental-car/getAllCars.php";
 
@@ -40,7 +39,6 @@ public class homePage_visitor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-        FirebaseApp.initializeApp(this);
 
         recyclerView = findViewById(R.id.view1);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -144,21 +142,6 @@ public class homePage_visitor extends AppCompatActivity {
         outState.putSerializable("carList", (ArrayList<Car>) carList);
     }
 
-
-    public void myfavs(View view) {
-        Intent intent = new Intent(this, MyFavourites.class);
-        startActivity(intent);
-    }
-
-    public void mybookings(View view) {
-        Intent intent = new Intent(this, MyBookings.class);
-        startActivity(intent);
-    }
-
-    public void myprofile(View view) {
-        Intent intent = new Intent(this, Profile.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onBackPressed() {
