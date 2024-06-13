@@ -40,8 +40,8 @@ public class carAdapter_Booking extends RecyclerView.Adapter<carAdapter_Booking.
         RentedCar car = carList.get(position);
         holder.textViewCarName.setText(car.getCar().getCompany());
         holder.textViewCarDetails.setText(car.getCar().getModel_year());
-        holder.textViewCarMonthlyPrice.setText("Start Date: " + car.getStartDate());
-        holder.textViewCarDaily.setText("End Date: " + car.getEndDate());
+        holder.textViewCarMonthlyPrice.setText(car.getStartDate());
+        holder.textViewCarDaily.setText(car.getEndDate());
         Glide.with(context).load(car.getCar().getImage()).into(holder.imageViewCar);
 
         holder.itemView.setOnClickListener(v -> {

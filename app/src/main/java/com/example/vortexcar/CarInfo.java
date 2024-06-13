@@ -244,6 +244,7 @@ public class CarInfo extends AppCompatActivity {
 
                             if (status.equals("success")) {
                                 userId = jsonObject.getInt("user_id");
+                                Log.d("TAG", "onResponse: "+userId);
                                 addToFavorites(userId);
                             } else {
                                 String message = jsonObject.getString("message");

@@ -29,9 +29,10 @@ import java.util.Map;
 
 public class My_Favs extends AppCompatActivity {
 
+
     private RecyclerView recyclerView;
     private List<Car> rentedCars = new ArrayList<>();
-    ;
+
     private carAdapter_fav carAdapter;
 
 
@@ -71,7 +72,7 @@ public class My_Favs extends AppCompatActivity {
 
                             if (status.equals("success")) {
                                 int userId = jsonObject.getInt("user_id");
-                                fetchFavoriteCars(userId);
+                                fetchCarsByUserId(userId);
                             } else {
                                 String message = jsonObject.getString("message");
                                 Toast.makeText(My_Favs.this, message, Toast.LENGTH_SHORT).show();
@@ -101,8 +102,7 @@ public class My_Favs extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-
-    private void fetchFavoriteCars(int userId) {
+    private void fetchCarsByUserId(int userId) {
         String BASE_URL = "http://10.0.2.2/rental-car/get_fav.php?AccountID=" + userId;
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -121,20 +121,22 @@ public class My_Favs extends AppCompatActivity {
                                 for (int i = 0; i < data.length(); i++) {
                                     JSONObject carObject = data.getJSONObject(i);
                                     Car car = new Car();
-                                    car.setId(carObject.getInt("ID")); // Assuming the JSON key for car_id
+                                    car.setId(carObject.getInt("ID"));
                                     car.setCompany(carObject.getString("company"));
                                     car.setModel_year(carObject.getString("Model_year"));
                                     car.setColor(carObject.getString("color"));
                                     car.setDailyPrice(carObject.getInt("DailyPrice"));
                                     car.setMonthlyPrice(carObject.getInt("MonthlyPrice"));
-                                    car.setImage("http://10.0.2.2/" + carObject.getString("image"));
+                                    car.setImage("http://10.0.2.2/"+carObject.getString("image"));
+//                                    car.setPrice(carObject.getInt("TotalPrice"));
                                     car.setStatus(carObject.getString("status"));
+//
+//                                    String startDate = "color: "+carObject.getString("color");
+//                                    String endDate = carObject.getString("status");
+
+
                                     rentedCars.add(car);
                                 }
-
-                                // Update the RecyclerView adapter
-                                carAdapter = new carAdapter_fav(rentedCars, My_Favs.this);
-                                recyclerView.setAdapter(carAdapter);
 
                             } else {
                                 String message = jsonObject.getString("message");
@@ -144,6 +146,8 @@ public class My_Favs extends AppCompatActivity {
                             e.printStackTrace();
                             Toast.makeText(My_Favs.this, "JSON parsing error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                        carAdapter = new carAdapter_fav(rentedCars, My_Favs.this);
+                        recyclerView.setAdapter(carAdapter);
                     }
                 },
                 new Response.ErrorListener() {
@@ -157,3 +161,4 @@ public class My_Favs extends AppCompatActivity {
         queue.add(stringRequest);
     }
 }
+

@@ -139,7 +139,7 @@ public class Profile extends AppCompatActivity {
         View editButton = findViewById(R.id.editButton);
 
         if (saveButton != null) {
-            saveButton.setVisibility(View.VISIBLE); // Change visibility to VISIBLE
+            saveButton.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(this, "Save button not found", Toast.LENGTH_SHORT).show();
         }
@@ -226,7 +226,7 @@ public class Profile extends AppCompatActivity {
             String password = params[5];
 
             try {
-                URL url = new URL("http://192.168.50.88/VortexCar/update_profile.php");
+                URL url = new URL("http://10.0.2.2/VortexCar/update_profile.php");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);

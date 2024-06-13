@@ -30,9 +30,9 @@ public class carAdapter_fav extends RecyclerView.Adapter<carAdapter_fav.CarViewH
 
     @NonNull
     @Override
-    public CarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public carAdapter_fav.CarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_car, parent, false);
-        return new CarViewHolder(view);
+        return new carAdapter_fav.CarViewHolder(view);
     }
 
     @Override
@@ -40,19 +40,26 @@ public class carAdapter_fav extends RecyclerView.Adapter<carAdapter_fav.CarViewH
         Car car = carList.get(position);
         holder.textViewCarName.setText(car.getCompany());
         holder.textViewCarDetails.setText(car.getModel_year());
-        holder.textViewCarMonthlyPrice.setText(car.getColor());
-        holder.textViewCarDaily.setText(car.getDailyPrice());
+        holder.textViewCarColor.setText("Color: " + car.getColor());
+        holder.textViewCarMonthlyPrice.setText("Monthly Price: " + car.getMonthlyPrice());
+        holder.textViewCarDaily.setText("Daily Price: " + car.getDailyPrice());
         Glide.with(context).load(car.getImage()).into(holder.imageViewCar);
 
-//        holder.itemView.setOnClickListener(v -> {
-//            Intent intent = new Intent(context, CarInfo_Booking.class);
-//            intent.putExtra("imageUrl", car.getCar().getImage());
-//            intent.putExtra("carName", car.getCar().getCompany());
-//            intent.putExtra("carStrartDate", car.getStartDate());
-//            intent.putExtra("carEndDate", car.getEndDate());
-//            context.startActivity(intent);
-//        });
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CarInfo.class);
+            intent.putExtra("imageUrl", car.getImage());
+            intent.putExtra("carName", car.getCompany());
+            intent.putExtra("carModel", car.getModel_year());
+            intent.putExtra("carColor", car.getColor());
+            intent.putExtra("dailyPrice", car.getDailyPrice()+"");
+            intent.putExtra("monthlyPrice", car.getMonthlyPrice()+"");
+            intent.putExtra("mileage",car.getMileage()+"");
+            intent.putExtra("id",car.getId()+"");
+            context.startActivity(intent);
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -63,6 +70,7 @@ public class carAdapter_fav extends RecyclerView.Adapter<carAdapter_fav.CarViewH
         ImageView imageViewCar;
         TextView textViewCarName;
         TextView textViewCarDetails;
+        TextView textViewCarColor;
         TextView textViewCarMonthlyPrice;
         TextView textViewCarDaily;
 
@@ -71,11 +79,26 @@ public class carAdapter_fav extends RecyclerView.Adapter<carAdapter_fav.CarViewH
             imageViewCar = itemView.findViewById(R.id.imageViewCar);
             textViewCarName = itemView.findViewById(R.id.textViewCarName);
             textViewCarDetails = itemView.findViewById(R.id.textViewCarModel);
+            textViewCarColor = itemView.findViewById(R.id.textViewCarColor);
             textViewCarMonthlyPrice = itemView.findViewById(R.id.textViewCarMonthlyPrice);
             textViewCarDaily = itemView.findViewById(R.id.textViewCarDailyPrice);
         }
     }
 
+    public void filter(String text) {
+        carList.clear();
+        if (text.isEmpty()) {
+            carList.addAll(carListFull);
+        } else {
+            text = text.toLowerCase();
+            for (Car car : carListFull) {
+                if (car.getCompany().toLowerCase().contains(text) ||
+                        car.getModel_year().toLowerCase().contains(text) ||
+                        car.getColor().toLowerCase().contains(text)) {
+                    carList.add(car);
+                }
+            }
+        }
 
-
+    }
 }
