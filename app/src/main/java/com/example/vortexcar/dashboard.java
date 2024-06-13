@@ -34,11 +34,10 @@ public class dashboard extends AppCompatActivity {
     private TextView totalRevenue;
     private TextView totalCustomers, newCustomers, customersRentOneCar;
     private RequestQueue queue;
-    private ListView lstTopCar;
+    private ListView lstTopCar ,lstTopCustomer;
 
 
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +50,8 @@ public class dashboard extends AppCompatActivity {
         newCustomers = findViewById(R.id.newCustomers);
         customersRentOneCar = findViewById(R.id.customersRentOneCar);
         lstTopCar = findViewById(R.id.topcar);
+        lstTopCustomer = findViewById(R.id.topCustomer);
+
 
 
         setDashboardData();
@@ -91,6 +92,21 @@ public class dashboard extends AppCompatActivity {
                                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(dashboard.this,
                                             android.R.layout.simple_list_item_1, allcars);
                                     lstTopCar.setAdapter(adapter);
+
+                            JSONArray topsCustomer = obj.getJSONArray("TopCustomer");
+
+                            ArrayList<String> allcustomer = new ArrayList<>();
+                            for (int i = 0; i < 20; i++) {
+                                try {
+                                    JSONObject customer = topsCustomer.getJSONObject(i);
+                                    allcustomer.add(customer.getString("Name") +" , " +" , rent count : "+customer.getString("RentCount"));
+                                }catch(JSONException exception){
+                                    Log.d("volley_error", exception.toString());
+                                }
+                            }
+                            ArrayAdapter<String> adapterCustomer = new ArrayAdapter<String>(dashboard.this,
+                                    android.R.layout.simple_list_item_1, allcustomer);
+                            lstTopCustomer.setAdapter(adapterCustomer);
 
                         } catch (JSONException ep) {
                             Log.e("err", "onResponse: ", ep);

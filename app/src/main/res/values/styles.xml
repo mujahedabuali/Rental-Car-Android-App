@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><style
-    name="CustomSpinnerDropdown" parent="Widget.AppCompat.ListPopupWindow">
-        <item name="android:background">#19191b</item>
-        <item name="android:popupBackground">#19191b</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/cardBackground</item>
-        <item name="android:textColor">@color/textColorPrimary</item>
-
-</style></resources>
+<resources>
+        <style name="CustomSpinnerDropdown" parent="Widget.AppCompat.ListPopupWindow">
+                <item name="android:background">#19191b</item>
+                <item name="android:popupBackground">#19191b</item>
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorAccent">@color/colorAccent</item>
+                <item name="android:windowBackground">@drawable/graient_color_background_white</item>
+                <item name="android:textColor">@color/textColorPrimary</item>
+        </style>
+</resources>

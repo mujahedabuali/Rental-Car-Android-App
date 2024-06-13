@@ -54,6 +54,8 @@ public class carAdapterForAdmin extends RecyclerView.Adapter<carAdapterForAdmin.
             intent.putExtra("mileage", car.getMileage());
             intent.putExtra("dailyPrice", car.getDailyPrice());
             intent.putExtra("monthlyPrice", car.getMonthlyPrice());
+            intent.putExtra("status", car.getStatus());
+
             context.startActivity(intent);
         });
 
