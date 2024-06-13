@@ -21,7 +21,6 @@
             android:layout_marginStart="180dp"
             android:layout_marginTop="16dp"
             android:checked="false"
-            android:onClick="toggleBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

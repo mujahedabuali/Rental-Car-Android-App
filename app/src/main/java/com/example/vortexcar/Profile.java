@@ -58,6 +58,7 @@ public class Profile extends AppCompatActivity {
         backgroundSwitch = findViewById(R.id.backgroundSwitch);
         scrollView = findViewById(R.id.scrollView);
 
+        // Update the background based on switch state
         updateBackground();
 
         backgroundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -66,8 +67,6 @@ public class Profile extends AppCompatActivity {
                 updateBackground();
             }
         });
-
-
 
         // Retrieve user data from SharedPreferences
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -99,9 +98,9 @@ public class Profile extends AppCompatActivity {
 
     private void updateBackground() {
         if (backgroundSwitch.isChecked()) {
-            scrollView.setBackgroundResource(R.drawable.graient_color_background);
-        } else {
             scrollView.setBackgroundResource(R.drawable.graient_color_background_white);
+        } else {
+            scrollView.setBackgroundResource(R.drawable.graient_color_background);
         }
     }
 
@@ -136,7 +135,6 @@ public class Profile extends AppCompatActivity {
     public void enableEditing(View view) {
         setFieldsEditable(true);
 
-        // Debug logging
         View saveButton = findViewById(R.id.saveButton);
         View editButton = findViewById(R.id.editButton);
 
@@ -152,7 +150,6 @@ public class Profile extends AppCompatActivity {
             Toast.makeText(this, "Edit button not found", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public void saveChanges(View view) {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
