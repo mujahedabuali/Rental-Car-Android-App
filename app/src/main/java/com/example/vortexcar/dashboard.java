@@ -99,7 +99,7 @@ public class dashboard extends AppCompatActivity {
                             for (int i = 0; i < 20; i++) {
                                 try {
                                     JSONObject customer = topsCustomer.getJSONObject(i);
-                                    allcustomer.add(customer.getString("Name") +" , "+ customer.getString("Email") +" , rent count : "+customer.getString("RentCount"));
+                                    allcustomer.add(customer.getString("Name") +" , " +" , rent count : "+customer.getString("RentCount"));
                                 }catch(JSONException exception){
                                     Log.d("volley_error", exception.toString());
                                 }
