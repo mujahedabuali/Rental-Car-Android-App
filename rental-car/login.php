@@ -3,24 +3,16 @@
 require_once 'dbconfig.in.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
+    $action = $_POST["action"];
 
-    if (isset($data["action"])) {
-        $action = $data["action"];
-
-        if ($action === "login") {
-            login($data);
-        } else if ($action === "reset_password") {
-            resetPassword($data);
-        } else if ($action === "update_profile") {
-            updateProfile($data);
-        }
-    } else {
-        echo json_encode(["status" => "error", "message" => "No action specified"]);
+    if ($action === "login") {
+        login();
+    } else if ($action === "reset_password") {
+        resetPassword();
+    } else if ($action === "update_profile") {
+        updateProfile();
     }
 }
-
 
 function login() {
     global $pdo;
@@ -111,16 +103,16 @@ function resetPassword() {
     }
 }
 
-function updateProfile($data) {
+function updateProfile() {
     global $pdo;
 
-    $id = $data["id"];
-    $firstName = $data["first_name"];
-    $lastName = $data["last_name"];
-    $gender = $data["gender"];
-    $email = $data["email"];
-    $phone = $data["phone"];
-    $password = $data["password"];
+    $id = $_POST["id"];
+    $firstName = $_POST["first_name"];
+    $lastName = $_POST["last_name"];
+    $gender = $_POST["gender"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $password = $_POST["password"];
 
     $errors = [];
     if (empty($id)) {
