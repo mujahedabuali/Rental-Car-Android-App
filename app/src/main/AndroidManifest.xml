@@ -42,6 +42,9 @@
             android:name=".MyFavourites"
             android:exported="false" />
         <activity
+            android:name=".My_Favs"
+            android:exported="false" />
+        <activity
             android:name=".MyBookings"
             android:exported="false" />
         <activity

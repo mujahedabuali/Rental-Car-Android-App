@@ -67,6 +67,9 @@ public class homePage extends AppCompatActivity {
         } else if (itemId == R.id.navigation_cart) {
             startActivity(new Intent(homePage.this, MyBookings.class));
             return true;
+        } else if (itemId == R.id.navigation_fav) {
+            startActivity(new Intent(homePage.this, My_Favs.class));
+            return true;
         } else if (itemId == R.id.navigation_profile) {
             startActivity(new Intent(homePage.this, Profile.class));
             return true;

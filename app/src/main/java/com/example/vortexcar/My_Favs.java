@@ -30,15 +30,15 @@ import java.util.Map;
 public class My_Favs extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<RentedCar> rentedCars = new ArrayList<>();
+    private List<Car> rentedCars = new ArrayList<>();
     ;
-    private carAdapter_Booking carAdapter;
+    private carAdapter_fav carAdapter;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_my_bookings);
+        setContentView(R.layout.activity_my_favs);
 
         recyclerView = findViewById(R.id.view1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,7 +71,7 @@ public class My_Favs extends AppCompatActivity {
 
                             if (status.equals("success")) {
                                 int userId = jsonObject.getInt("user_id");
-                                fetchCarsByUserId(userId);
+                                fetchFavoriteCars(userId);
                             } else {
                                 String message = jsonObject.getString("message");
                                 Toast.makeText(My_Favs.this, message, Toast.LENGTH_SHORT).show();
@@ -101,8 +101,9 @@ public class My_Favs extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void fetchCarsByUserId(int userId) {
-        String BASE_URL = "http://10.0.2.2/rental-car/getCarsByUser.php?AccountID=" + userId;
+
+    private void fetchFavoriteCars(int userId) {
+        String BASE_URL = "http://10.0.2.2/rental-car/get_fav.php?AccountID=" + userId;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL,
@@ -120,23 +121,20 @@ public class My_Favs extends AppCompatActivity {
                                 for (int i = 0; i < data.length(); i++) {
                                     JSONObject carObject = data.getJSONObject(i);
                                     Car car = new Car();
-                                    car.setId(carObject.getInt("ID"));
+                                    car.setId(carObject.getInt("ID")); // Assuming the JSON key for car_id
                                     car.setCompany(carObject.getString("company"));
                                     car.setModel_year(carObject.getString("Model_year"));
                                     car.setColor(carObject.getString("color"));
                                     car.setDailyPrice(carObject.getInt("DailyPrice"));
                                     car.setMonthlyPrice(carObject.getInt("MonthlyPrice"));
-                                    car.setImage("http://10.0.2.2/"+carObject.getString("image"));
-                                    car.setPrice(carObject.getInt("TotalPrice"));
+                                    car.setImage("http://10.0.2.2/" + carObject.getString("image"));
                                     car.setStatus(carObject.getString("status"));
-
-                                    String startDate = carObject.getString("startDate");
-                                    String endDate = carObject.getString("endDate");
-
-                                    RentedCar rentedCar = new RentedCar(car, startDate, endDate);
-                                    rentedCars.add(rentedCar);
+                                    rentedCars.add(car);
                                 }
 
+                                // Update the RecyclerView adapter
+                                carAdapter = new carAdapter_fav(rentedCars, My_Favs.this);
+                                recyclerView.setAdapter(carAdapter);
 
                             } else {
                                 String message = jsonObject.getString("message");
@@ -146,8 +144,6 @@ public class My_Favs extends AppCompatActivity {
                             e.printStackTrace();
                             Toast.makeText(My_Favs.this, "JSON parsing error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        carAdapter = new carAdapter_Booking(rentedCars, My_Favs.this);
-                        recyclerView.setAdapter(carAdapter);
                     }
                 },
                 new Response.ErrorListener() {
