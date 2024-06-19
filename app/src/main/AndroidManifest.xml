@@ -39,6 +39,12 @@
             android:name=".AddCar"
             android:exported="false" />
         <activity
+            android:name=".rentCarPage"
+            android:exported="false" />
+        <activity
+            android:name=".theRentCarInfo"
+            android:exported="false" />
+        <activity
             android:name=".MyFavourites"
             android:exported="false" />
         <activity

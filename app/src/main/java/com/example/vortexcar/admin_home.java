@@ -4,10 +4,13 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,8 @@ public class admin_home extends AppCompatActivity {
     private List<Car> carList = new ArrayList<>();;
     private carAdapterForAdmin carAdapterForAdmin;
     private static  final String BASE_URL =vars.BASE_URL+"/rental-car/getAllCars.php";
+
+    private EditText search;
     BottomNavigationView bottomNavigationView;
 
 
@@ -52,6 +57,7 @@ public class admin_home extends AppCompatActivity {
         recyclerView.setAdapter(carAdapterForAdmin);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        search = findViewById(R.id.editTextText);
         loadItems();
     }
 
@@ -91,6 +97,23 @@ public class admin_home extends AppCompatActivity {
 
                         carAdapterForAdmin adapter = new carAdapterForAdmin( carList,admin_home.this);
                         recyclerView.setAdapter(adapter);
+
+                        search.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                adapter.filter(s.toString());
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                adapter.filter(s.toString());
+                            }
+                        });
 
                     }
                 }, new Response.ErrorListener() {

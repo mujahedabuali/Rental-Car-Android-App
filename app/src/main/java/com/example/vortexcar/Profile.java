@@ -59,7 +59,6 @@ public class Profile extends AppCompatActivity {
         backgroundSwitch = findViewById(R.id.backgroundSwitch);
         scrollView = findViewById(R.id.scrollView);
 
-        // Update the background based on switch state
         updateBackground();
 
         backgroundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -140,7 +139,7 @@ public class Profile extends AppCompatActivity {
         View editButton = findViewById(R.id.editButton);
 
         if (saveButton != null) {
-            saveButton.setVisibility(View.VISIBLE);
+            saveButton.setVisibility(View.VISIBLE); // Change visibility to VISIBLE
         } else {
             Toast.makeText(this, "Save button not found", Toast.LENGTH_SHORT).show();
         }
@@ -280,5 +279,4 @@ public class Profile extends AppCompatActivity {
         }
     }
 }
-
 

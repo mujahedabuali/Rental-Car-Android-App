@@ -48,7 +48,7 @@ public class homePage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     EditText search;
 
-    private static  final String BASE_URL = vars.BASE_URL+"/rental-car/getAllCars.php";
+    private static  final String BASE_URL = vars.BASE_URL+"/rental-car/getFreeCar.php";
 
 
     @Override

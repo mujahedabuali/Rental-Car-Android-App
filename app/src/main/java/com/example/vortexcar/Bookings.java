@@ -162,7 +162,7 @@ public class Bookings extends AppCompatActivity {
                     params.put("carID", carID);
                     params.put("accountID", accID);
                     params.put("totalPrice", String.valueOf(totalPrice));
-                    params.put("status", "confirmed");
+                    params.put("status", "now");
                     params.put("startDate", Helper.convertDateFormat(startDate));
                     params.put("endDate", Helper.convertDateFormat(endDate));
                     return params;

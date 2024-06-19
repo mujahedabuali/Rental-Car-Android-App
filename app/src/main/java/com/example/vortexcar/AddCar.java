@@ -52,12 +52,8 @@ public class AddCar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveCar();
-
             }
         });
-
-
-
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +71,6 @@ public class AddCar extends AppCompatActivity {
             modelEditText.setText(savedInstanceState.getString("model"));
             imageURLEditText.setText(savedInstanceState.getString("imageURL"));
         }
-
     }
 
     @Override
@@ -138,7 +133,7 @@ public class AddCar extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("company", company);
                 params.put("SeatsNumber", seats);
-                params.put("model_year", model);
+                params.put("Model_year", model);
                 params.put("MonthlyPrice", monthlyPrice);
                 params.put("Mileage", mileage);
                 params.put("DailyPrice", dailyPrice);

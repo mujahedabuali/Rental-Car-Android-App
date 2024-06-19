@@ -14,16 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class carAdapterForAdmin extends RecyclerView.Adapter<carAdapterForAdmin.CarViewHolder> {
 
     private List<Car> carList;
     private Context context;
+    private List<Car> carListFull;
 
     public carAdapterForAdmin(List<Car> carList, Context context) {
         this.carList = carList;
         this.context = context;
+        this.carListFull = new ArrayList<>(carList);
     }
 
     @NonNull
@@ -88,4 +91,21 @@ public class carAdapterForAdmin extends RecyclerView.Adapter<carAdapterForAdmin.
 
         }
     }
+    public void filter(String text) {
+        carList.clear();
+        if (text.isEmpty()) {
+            carList.addAll(carListFull);
+        } else {
+            text = text.toLowerCase();
+            for (Car car : carListFull) {
+                if (car.getCompany().toLowerCase().contains(text.toLowerCase()) ||
+                        car.getModel_year().toLowerCase().contains(text.toLowerCase()) ||
+                        car.getColor().toLowerCase().contains(text.toLowerCase())) {
+                    carList.add(car);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
 }
